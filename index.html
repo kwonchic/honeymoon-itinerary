@@ -27,32 +27,32 @@ button:focus-visible,a:focus-visible,input:focus-visible{outline:3px solid rgba(
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <script>
 const trip = [
-{id:'0818',date:'8/18 화',title:'MILAN · Arrival',subtitle:'도착해서 자는 날 — 일정 없음',tags:[['✈️','MXP 도착','flight'],['🏨','Moxy Milan Malpensa','hotel']],points:[['MXP T2',45.6301,8.7281],['Moxy Milan Malpensa',45.6293,8.7265]],timeline:[['✈️','MXP 도착','입국·수하물 수령 후 공항 근처 숙소 이동'],['🏨','Moxy 체크인','다음 날 운전을 위해 바로 휴식']],note:'8/19부터 본 일정. 18일에는 관광을 넣지 않음.'},
-{id:'0819',date:'8/19 수',title:'MXP → VENICE',subtitle:'시차 적응 + 렌터카 + 베네치아 첫인상',tags:[['🚗','SIXT MXP T2','must'],['🏨','Hotel Plaza Mestre','hotel'],['🌙','Venice Evening','opt']],points:[['SIXT MXP T2',45.6297,8.7276],['Hotel Plaza Mestre',45.4829,12.2322],['Venezia Santa Lucia',45.4412,12.3210],['Rialto',45.4380,12.3359],['San Marco',45.4341,12.3388]],timeline:[['🚗','09:00 렌터카 픽업','MXP T2 SIXT → Hotel Plaza'],['☕','휴게소 1회 · 기본','밀라노 → 베네치아 이동은 관광 경유 없이 체력 보호 우선'],['🏨','Hotel Plaza 체크인 우선','도착 즉시 체크인'],['🚆','Mestre → Santa Lucia','기차로 본섬 진입'],['🌙','저녁 베네치아','체크인 완료 시각에 따라 범위 조정']],choices:{route19:{label:'🚗 이동 루트',options:[['rest1','휴게소 1회 · 추천','가장 빠르고 현실적인 기본 루트'],['rest2','휴게소 2회','졸리거나 피곤할 때만'],['sirmione','Sirmione 짧은 투어 · 옵션','컨디션이 아주 좋고 체크인 지연을 감수할 때만']]},evening19:{label:'🌙 체크인 후',options:[['early','~14:30','Cannaregio → Rialto → San Marco 선택'],['mid','14:30–15:30','Cannaregio → Rialto → 저녁·일몰'],['late','15:30 이후','호텔 휴식 → Rialto 중심 짧은 저녁']] }},food:[['Dinner · 1st','Trattoria Bar Pontini','한국인 후기가 좋은 편. 워크인 시도 후 대기 길면 Plan B.'],['Dinner · Backup','Trattoria Alla Fontana','Pontini 대기 시 이동 가능한 대안.'],['Coffee · Early only','Caffè del Doge','Rialto 근처. 체크인 빠른 날만.'],['Gelato','Suso','늦은 시간에도 유연한 옵션.']],note:'공통 식당 필터: 한국인 후기 우선 · 워크인 현실성 · 아시아인/한국인 차별 관련 반복 후기 있는 곳은 제외.'},
-{id:'0820',date:'8/20 목',title:'VENICE · Full Day',subtitle:'San Marco 핵심 관광 + Dorsoduro',tags:[['⛪','San Marco Basilica','must'],['🏛️','Doge\'s Palace','must'],['☕','Caffè Florian','must'],['🌿','Dorsoduro','must']],points:[['Basilica di San Marco',45.4346,12.3397],['Doge\'s Palace',45.4337,12.3404],['Caffè Florian',45.4339,12.3380],['Ponte dell\'Accademia',45.4318,12.3286],['Osteria Al Squero',45.4311,12.3220],['Zattere',45.4290,12.3198]],timeline:[['🚆','Hotel Plaza → Venice','19일 수행 여부에 따라 이동 방식 조정'],['⛪','San Marco Basilica','오전 핵심'],['🏛️','Doge\'s Palace','약 1.5–2시간'],['🍝','점심','Da Cherubino 또는 Dal Moro\'s'],['☕','Caffè Florian','희망 방문지. 주요 관광 이후 휴식'],['🌿','Accademia → Dorsoduro','오후 산책'],['🍷','Al Squero','치케티 + 음료'],['🌅','Zattere','19일 Rialto 수행 여부에 따라 귀환']],choices:{opt20:{label:'✨ 추가 옵션',options:[['salute','Salute + Punta della Dogana','Dorsoduro 확장 1순위'],['gondola','곤돌라 30분','신혼여행 옵션'],['campanile','Campanile','날씨 좋을 때만'],['none','추가 없음 · 추천','핵심 일정만 여유 있게']] }},food:[['Lunch','Da Cherubino','앉아서 제대로 먹는 기본 선택.'],['Quick Lunch','Dal Moro\'s','일정 밀렸을 때 빠르게.'],['Cicchetti','Osteria Al Squero','Dorsoduro 치케티.'],['Gelato','Gelateria il Doge','Dorsoduro 디저트.']],note:'Caffè Florian은 사용자 희망 방문지로 예외 포함. 서비스 관련 한국인 후기 편차는 별도 주의.'},
-{id:'0821',date:'8/21 금',title:'VENICE → DOLOMITES',subtitle:'Passo Giau + Cortina + Optional Cinque Torri + Misurina',tags:[['🏔️','Passo Giau','must'],['🏘️','Cortina','must'],['🥾','Cinque Torri','opt'],['🌅','Misurina','must']],points:[['Hotel Plaza Mestre',45.4829,12.2322],['Passo Giau',46.4836,12.0514],['Cortina d\'Ampezzo',46.5405,12.1357],['B&B HOTEL Passo Tre Croci Cortina',46.5585,12.2006],['Lago di Misurina',46.5821,12.2547]],timeline:[['🚗','08:30 전후 출발','Mestre → Dolomites'],['🏔️','Passo Giau','사진 + 짧은 산책'],['🧠','Cinque Torri는 선택지에서만 판단','13:30 이전이면 GO, 늦으면 바로 Cortina/체크인 우선'],['🏘️','Cortina','기본은 짧게 보급·휴식 중심'],['🛒','보급','CONAD / Eurospin'],['🏨','Passo Tre Croci 체크인','짐 정리·휴식'],['🌅','Lago di Misurina','체크인 후 저녁 고정']],choices:{torri21:{label:'🥾 Cinque Torri',options:[['go','13:30 이전 · GO','리프트 + 짧은 산책'],['short','13:30–14:30 · Short','전망 중심'],['skip','15:00 이후 · SKIP','Misurina 보호']] }},food:[['Cortina · Casual','Ristorante Pizzeria 5 Torri','Cinque Torri를 안 간 날 점심 후보.'],['Cortina · Meal','La Tavernetta di Cortina','제대로 먹는 선택지.'],['Coffee','Caffè Paoletti','Cortina 커피 옵션.'],['Misurina · Dinner','Malga Misurina','저녁 후보.']],parking:[['Cinque Torri','Bai de Dones','리프트 출발점 주차 후보.'],['Cortina','CONAD CITY','마트 + 주차장.'],['Cortina','Eurospin','차량 여행용 보급.']],note:'우선순위: Misurina 보호 → Cortina 체류시간 축소 → Giau 체류시간 축소 → Cinque Torri 삭제.'},
-{id:'0822',date:'8/22 토',title:'BRAIES → ORTISEI',subtitle:'Braies 후 Ortisei 이동 · St. John은 날씨 좋을 때만 옵션',tags:[['🅿️','Braies P4 예약 완료','must'],['⛪','St. John Viewpoint','opt'],['🎫','Gardena Card 구매','must'],['🏨','Chalet Hotel Hartmann','hotel']],points:[['B&B HOTEL Passo Tre Croci Cortina',46.5585,12.2006],['Lago di Braies P4',46.6987,12.0857],['Ortisei',46.5751,11.6710],['Chalet Hotel Hartmann',46.5704,11.6743]],timeline:[['🚗','출발','P4 예약시간 기준 역산'],['🏞️','Lago di Braies','STANDARD 1.5–2h 기본'],['⛪','St. John은 선택지에서만 판단','날씨·체력 좋을 때만 45–60분 옵션'],['🏘️','Ortisei 입성','Gardena Card는 Ortisei 공식 판매처에서'],['🛒','Despar Dolomiti','필요 시 23일 산행 보급'],['🏨','Chalet Hotel Hartmann','체크인 + Ortisei 저녁']],choices:{braies22:{label:'🏞️ Braies 체류',options:[['quick','QUICK','45–60분'],['standard','STANDARD · 추천','1.5–2시간'],['full','FULL','2.5–3시간']]},john22:{label:'⛪ St. John',options:[['go','날씨 맑음 · GO','뷰포인트만'],['skip','구름/피곤 · SKIP','Ortisei 직행']] }},food:[['Dinner · 1st','Restaurant Tubladel','워크인 시도 후 대기 길면 대안 이동.'],['Dinner · Backup','Vedl Mulin','중심가 백업.'],['Gelato','Squisitezze Gioia','저녁 산책 마무리.'],['Coffee','Soviso Cafe','필요할 때만.']],parking:[['St. John','Ranui 주차장','뷰포인트용 유료 후보.'],['Ortisei · Shop','Parkgarage Central + Despar','Despar 이용 시 최대 3시간 무료 바우처 구조.'],['Ortisei · Short','Parking Fever','짧은 일정 90분 무료 후보.']],note:'Gardena Card 3일권은 8/22–24 사용 예정. Seceda 탑승 예약 필요 여부는 공식 구매 안내 기준으로 최종 확인.'},
-{id:'0823',date:'8/23 일',title:'SECEDA DAY',subtitle:'케이블카 적극 활용 · Ridge Line 우선',tags:[['🎫','Gardena Card','must'],['🏔️','Seceda Ridge','must'],['🛖','Pieralongia','must']],points:[['Ortisei Seceda Valley Station',46.5777,11.6705],['Seceda',46.6006,11.7240],['Seceda Ridge',46.6027,11.7247],['Malga Pieralongia',46.5930,11.7390]],timeline:[['🥐','07:30 조식','오픈런에 가깝게'],['🚡','Ortisei → Furnes → Seceda','Gardena Card'],['📸','Seceda Ridge Line','가장 먼저 핵심 풍경 확보'],['🥾','Pieralongia','STANDARD 기본 루트'],['🛖','산장 점심','Pieralongia / Sofie / Daniel'],['🚡','14–15시 전후 하산','이후 Ortisei 또는 호텔']],choices:{seceda23:{label:'🥾 산 위 강도',options:[['easy','EASY','Ridge + 가까운 산장'],['standard','STANDARD · 추천','Ridge → Pieralongia → 산장'],['full','FULL','날씨·체력 최고일 때만']] }},food:[['Mountain · 1st','Malga Pieralongia Alm','STANDARD 동선과 가장 잘 맞음.'],['Mountain · Meal','Baita Sofie Hütte','조금 더 제대로 산장 점심.'],['Mountain · Backup','Baita Daniel Hütte','혼잡 시 백업.'],['Dinner','Tubladel → Vedl Mulin','전날 못 간 곳 우선.']],parking:[['Seceda','Parkgarage Seceda','하부역 접근성 우선.'],['Alternative','Hotel parking','차를 두고 이동 가능한 경우 비교.']],note:'23일은 숙소 이동 없음. 산 위에서 가장 여유 있게 보내는 날.'},
-{id:'0824',date:'8/24 월',title:'ALPE DI SIUSI → SANTRE',subtitle:'Mont Sëuc → Kaito Viewpoint → Santre',tags:[['🧳','Luggage Day','opt'],['🎫','Gardena Card','must'],['📸','Kaito Viewpoint','must'],['🏨','Santre 14:00~','hotel']],points:[['Chalet Hotel Hartmann',46.5704,11.6743],['Ortisei · Alpe di Siusi Gondola',46.5725,11.6700],['Mont Sëuc',46.5578,11.6639],['Kaito Viewpoint',46.5484,11.6553],['Santre dolomythic home',46.7069,11.6981]],timeline:[['🧳','체크아웃 + 짐 트렁크','호텔에서 미리 적재'],['🅿️','곤돌라 관리형 주차','무료보다 관리형 우선'],['🚡','Ortisei → Mont Sëuc','Gardena Card'],['🌿','Alpe di Siusi','Kaito를 최소 성공조건으로'],['📸','Kaito Viewpoint','여기서 종료해도 충분'],['🍽️','Restaurant Mont Seuc','복귀 후 점심/커피'],['🚗','하산 → Santre','14:00 체크인 가능']],choices:{siusi24:{label:'🌿 Kaito 도착 후',options:[['end','충분히 봄 · 추천','복귀 → 점심 → Santre'],['walk','조금 더 걷기','초원 산책 연장'],['sole','Sole 리프트','Gardena Card 활용'],['full','FULL','오전 매우 빠르고 날씨·체력 최고일 때']] }},food:[['Mountain · Default','Restaurant Mont Seuc','동선 손실 최소.'],['Santre','호텔 내 식사','체크인 이후 외부 저녁 일정 없음.']],parking:[['Luggage Day','Ortisei–Alpe di Siusi 관리형 주차','캐리어가 차량에 있는 날.'],['Security','차량 보안','귀중품 휴대 · 도착 후 트렁크 열지 않기.']],note:'Santre는 8/24 14:00 체크인. 13시대 복귀 판단 권장.'},
-{id:'0825',date:'8/25 화',title:'SANTRE · Stay Day',subtitle:'기본은 아무 데도 안 나감',tags:[['♨️','Stay at Santre','must'],['☕','Bressanone 2–3h','opt'],['🥾','Plose AM','opt']],points:[['Santre',46.7069,11.6981]],timeline:[['🥐','조식','늦잠 가능'],['♨️','Santre 풀스테이','기본 추천'],['☕','외출은 선택지에서만 판단','Bressanone/Plose는 심심하거나 걷고 싶을 때만']],choices:{santre25:{label:'🌿 오늘 뭐 할까?',options:[['stay','Santre Stay · 추천','숙소 자체를 목적지로'],['brixen','Bressanone 2–3h','Cathedral → Cloister → 구시가지 → 카페'],['plose','Plose AM','조식 후 걷고 싶을 때만']] }},food:[['Cafe · Bressanone','Pupp Café','커피·케이크.'],['Alternative','3fiori','현대적인 카페/바.'],['Dinner','Santre','외부 저녁 없음.']],parking:[['Bressanone','Parkhaus Stufels','구시가지 접근 좋은 관리형 주차.'],['Alternative','Park Brixen','무료 후보.']],note:'Santre 체크아웃은 8/26 10:00. 외출은 필수 관광이 아니라 탈출 카드.'},
-{id:'0826',date:'8/26 수',title:'SANTRE → MILAN',subtitle:'밀라노 복귀 + 렌터카 반납 + 첫날 밤',tags:[['🏨','NYX Milan 15:00~','hotel'],['🚗','SIXT 반납 ≤20:00','must'],['🌙','Duomo Rooftop','opt']],points:[['Santre',46.7069,11.6981],['NYX Hotel Milan',45.4868,9.2027],['Milano Centrale SIXT',45.4859,9.2049],['Duomo di Milano',45.4642,9.1900]],timeline:[['🏨','10:00 Santre 체크아웃','밀라노 방향'],['☕','경유는 선택지에서만 판단','기본은 직행. Trento/Riva/Verona는 피곤하지 않을 때만'],['🏨','NYX 체크인 + 짐 처리','15:00 이후'],['🚗','Milano Centrale SIXT 반납','20:00 마감'],['🌙','첫날 저녁','Duomo/Galleria 가벼운 산책'],['🌃','Rooftop OPTIONAL','내부는 27일 옵션']],choices:{stop26:{label:'🚗 밀라노 전 경유',options:[['direct','바로 밀라노 · 추천','가장 편함'],['trento','Trento','점심/커피'],['riva','Riva del Garda','호수 + 점심/커피'],['verona','Verona','도시 관광 욕구 있을 때']]},night26:{label:'🌙 밀라노 첫날 밤',options:[['duomo','Duomo/Galleria 산책 · 추천','저녁 + 야경'],['roof','Duomo Rooftop','루프탑 야경만'],['easy','Centrale 근처 저녁','피곤하면']] }},food:[['Riva','Leon D\'oro','점심 경유 시.'],['Trento','Forsterbräu Trento','빠른 점심.'],['Verona','Nastro Azzurro','압축 경유.'],['Milan Dinner','Risoelatte / Sugo','Duomo 권역.'],['Easy','Mercato Centrale Milano','완전히 지쳤을 때.']],note:'26일 Duomo 내부는 보지 않음. Rooftop은 야경 옵션으로만.'},
-{id:'0827',date:'8/27 목',title:'MILAN · Full Day',subtitle:'Brera → Montenapoleone → Galleria → Duomo',tags:[['🎨','Brera','must'],['🛍️','Montenapoleone','must'],['✨','Galleria MUST','must'],['⛪','Duomo Interior','opt']],points:[['NYX Hotel Milan',45.4868,9.2027],['Brera',45.4722,9.1872],['Via Montenapoleone',45.4684,9.1950],['Teatro alla Scala',45.4675,9.1897],['Galleria Vittorio Emanuele II',45.4658,9.1901],['Duomo',45.4642,9.1900]],timeline:[['🚇','09:30 NYX 출발','Brera부터'],['☕','Brera','Cafezal 선택 + 골목'],['🍝','12:30 점심','Maccheroni → Da Fortunata → Brera 29'],['🛍️','Montenapoleone','쇼핑. Cova는 휴식용'],['🎭','La Scala 외관','짧게'],['✨','Galleria Vittorio Emanuele II · MUST','최소 30분'],['⛪','Duomo','내부 OPTIONAL'],['🌇','저녁 분기','26일 Rooftop 완료 → Navigli / 미완료 → Rooftop']],choices:{duomo27:{label:'⛪ Duomo',options:[['inside','내부 관람','27일 선택 가능'],['skip','내부 SKIP','쇼핑·브레라·갤러리아 집중']]},night27:{label:'🌇 마지막 저녁',options:[['navigli','Navigli · 추천','26일 Rooftop 완료 시'],['roof','Duomo Rooftop','26일 못 했다면'],['rest','호텔 휴식','여행 막판 체력 보호']] }},food:[['Coffee','Cafezal','Brera 시작할 때.'],['Lunch · 1st','Maccheroni','Brera 점심 1순위.'],['Lunch · Backup','Osteria Da Fortunata','워크인 백업.'],['Shopping Break','Cova Montenapoleone','커피/디저트.'],['Navigli Dinner','Sciué Navigli','Navigli 선택 시.']],note:'차별 관련 명시적 후기 확인된 후보는 제외.'},
-{id:'0828',date:'8/28 금',title:'MILAN → PARIS → SEOUL',subtitle:'공항버스 + 파리 레이오버',tags:[['🚌','06:40 Centrale → MXP','must'],['✈️','AF1331 11:25','flight'],['🇫🇷','Paris Layover','opt'],['✈️','OZ502 19:10','flight']],points:[['NYX Hotel Milan',45.4868,9.2027],['Milano Centrale',45.4862,9.2045],['MXP T1',45.6306,8.7231],['CDG T2F',49.0035,2.5702],['CDG T1',49.0097,2.5479]],timeline:[['🎫','8/27 밤','Malpensa Shuttle 티켓 구매 + QR 저장'],['🚌','06:20 승차장 → 06:40 버스','07:50 전후 MXP T1 목표'],['✈️','11:25 AF1331','12:55 CDG 2F'],['🧳','수하물 연결 확인','ICN까지 through-check 여부 확인'],['🇫🇷','파리 시내는 선택지에서만 판단','몽마르트르/루브르/공항대기는 현장 선택'],['🚗','16:00 출발 목표','16:10 HARD CUT-OFF'],['✈️','19:10 OZ502','CDG T1 → ICN']],choices:{transfer28:{label:'🚗 파리 이동',options:[['private','공항 픽업 왕복 차량','가장 안정적. 같은 차량 대기 + T1 샌딩 가능 여부 확인'],['uber','Uber 왕복','몽마르트르 쪽이 상대적으로 보수적'],['cancel','시내 취소','AF1331/입국 지연 시']]},paris28:{label:'🇫🇷 Paris Layover',options:[['montmartre','Montmartre','Sacré-Cœur 외관/전망 → 점심 → 골목 → CDG. 내부 X'],['louvre','Louvre + Tuileries','루브르 외관 → 점심 → 튈르리 → CDG. 내부 X'],['stay','CDG Stay','리스크가 큰 경우']] }},food:[['Montmartre','Le Poulbot','외관 관광 후 식사 후보.'],['Louvre','Le Relais du Louvre','오후 애매한 시간 대응.'],['Louvre · Backup','Café de la Régence','백업.']],note:'파리 16:00 출발 목표 / 16:10 HARD CUT-OFF. 15:00 이후 시내 도착 예상이면 SHORT 또는 CANCEL.'},
-{id:'0829',date:'8/29 토',title:'SEOUL · Home',subtitle:'14:10 ICN T2 도착',tags:[['✈️','ICN T2','flight']],points:[['Incheon International Airport T2',37.4691,126.4510]],timeline:[['✈️','14:10 인천 도착','신혼여행 종료']],note:'여행 끝.'}
+{id:'0818',date:'8/18 화',title:'밀라노 도착 · MILAN Arrival',subtitle:'도착해서 자는 날 — 일정 없음',tags:[['✈️','MXP 도착','flight'],['🏨','말펜사 공항 숙소 · Moxy','hotel']],points:[['MXP T2',45.6301,8.7281],['Moxy Milan Malpensa',45.6293,8.7265]],timeline:[['✈️','MXP 도착','입국·수하물 수령 후 공항 근처 숙소 이동'],['🏨','Moxy 체크인','다음 날 운전을 위해 바로 휴식']],note:'8/19부터 본 일정. 18일에는 관광을 넣지 않음.'},
+{id:'0819',date:'8/19 수',title:'말펜사 → 베네치아 · MXP → Venice',subtitle:'시차 적응 + 렌터카 + 베네치아 첫인상',tags:[['🚗','SIXT MXP T2','must'],['🏨','메스트레 숙소 · Hotel Plaza','hotel'],['🌙','베네치아 저녁 산책','opt']],points:[['SIXT MXP T2',45.6297,8.7276],['Hotel Plaza Mestre',45.4829,12.2322],['베네치아 산타루치아역',45.4412,12.3210],['리알토 다리',45.4380,12.3359],['산마르코 광장',45.4341,12.3388]],timeline:[['🚗','09:00 렌터카 픽업','MXP T2 SIXT → 메스트레 숙소'],['☕','휴게소 1회 · 기본','밀라노 → 베네치아 이동은 관광 경유 없이 체력 보호 우선'],['🏨','Hotel Plaza 체크인 우선','도착 즉시 체크인'],['🚆','메스트레 → 산타루치아역','기차로 본섬 진입'],['🌙','저녁 베네치아','체크인 완료 시각에 따라 범위 조정']],choices:{route19:{label:'🚗 이동 루트',options:[['rest1','휴게소 1회 · 추천','가장 빠르고 현실적인 기본 루트'],['rest2','휴게소 2회','졸리거나 피곤할 때만'],['sirmione','Sirmione 짧은 투어 · 옵션','컨디션이 아주 좋고 체크인 지연을 감수할 때만']]},evening19:{label:'🌙 체크인 후',options:[['early','~14:30','Cannaregio → 리알토 다리 → 산마르코 광장 선택'],['mid','14:30–15:30','Cannaregio → 리알토 다리 → 저녁·일몰'],['late','15:30 이후','호텔 휴식 → 리알토 다리 중심 짧은 저녁']] }},food:[['Dinner · 1st','Pontini 식당','한국인 후기가 좋은 편. 워크인 시도 후 대기 길면 Plan B.'],['Dinner · Backup','Alla Fontana 식당','Pontini 대기 시 이동 가능한 대안.'],['Coffee · Early only','Caffè del Doge 카페','리알토 다리 근처. 체크인 빠른 날만.'],['Gelato','Suso 젤라또','늦은 시간에도 유연한 옵션.']],note:'공통 식당 필터: 한국인 후기 우선 · 워크인 현실성 · 아시아인/한국인 차별 관련 반복 후기 있는 곳은 제외.'},
+{id:'0820',date:'8/20 목',title:'베네치아 하루 관광 · Venice Full Day',subtitle:'산마르코 광장 핵심 관광 + Dorsoduro',tags:[['⛪','산마르코 대성당','must'],['🏛️','두칼레 궁전','must'],['☕','카페 플로리안','must'],['🌿','도르소두로 산책','must']],points:[['산마르코 대성당',45.4346,12.3397],['Doge\'s Palace',45.4337,12.3404],['Caffè Florian',45.4339,12.3380],['Ponte dell\'Accademia',45.4318,12.3286],['Al Squero 치케티 바',45.4311,12.3220],['Zattere',45.4290,12.3198]],timeline:[['🚆','Hotel Plaza → Venice','19일 수행 여부에 따라 이동 방식 조정'],['⛪','산마르코 광장 Basilica','오전 핵심'],['🏛️','Doge\'s Palace','약 1.5–2시간'],['🍝','점심','Da Cherubino 또는 Dal Moro\'s'],['☕','Caffè Florian','희망 방문지. 주요 관광 이후 휴식'],['🌿','Accademia → Dorsoduro','오후 산책'],['🍷','Al Squero','치케티 + 음료'],['🌅','Zattere','19일 리알토 다리 수행 여부에 따라 귀환']],choices:{opt20:{label:'✨ 추가 옵션',options:[['salute','Salute + Punta della Dogana','Dorsoduro 확장 1순위'],['gondola','곤돌라 30분','신혼여행 옵션'],['campanile','Campanile','날씨 좋을 때만'],['none','추가 없음 · 추천','핵심 일정만 여유 있게']] }},food:[['Lunch','Da Cherubino','앉아서 제대로 먹는 기본 선택.'],['Quick Lunch','Dal Moro\'s','일정 밀렸을 때 빠르게.'],['Cicchetti','Al Squero 치케티 바','Dorsoduro 치케티.'],['Gelato','Gelateria il Doge','Dorsoduro 디저트.']],note:'Caffè Florian은 사용자 희망 방문지로 예외 포함. 서비스 관련 한국인 후기 편차는 별도 주의.'},
+{id:'0821',date:'8/21 금',title:'베네치아 → 돌로미티 · Venice → Dolomites',subtitle:'자우 고개 · Passo Giau + Cortina + Optional Cinque Torri + Misurina',tags:[['🏔️','자우 고개 · 자우 고개 · Passo Giau','must'],['🏘️','코르티나','must'],['🥾','친퀘토리 옵션','opt'],['🌅','미주리나 호수','must']],points:[['Hotel Plaza Mestre',45.4829,12.2322],['자우 고개 · Passo Giau',46.4836,12.0514],['코르티나 담페초',46.5405,12.1357],['Passo Tre Croci 숙소',46.5585,12.2006],['미주리나 호수',46.5821,12.2547]],timeline:[['🚗','08:30 전후 출발','Mestre → Dolomites'],['🏔️','자우 고개 · Passo Giau','사진 + 짧은 산책'],['🧠','Cinque Torri는 선택지에서만 판단','13:30 이전이면 GO, 늦으면 바로 Cortina/체크인 우선'],['🏘️','Cortina','기본은 짧게 보급·휴식 중심'],['🛒','보급','CONAD / Eurospin'],['🏨','Passo Tre Croci 체크인','짐 정리·휴식'],['🌅','미주리나 호수','체크인 후 저녁 고정']],choices:{torri21:{label:'🥾 Cinque Torri',options:[['go','13:30 이전 · GO','리프트 + 짧은 산책'],['short','13:30–14:30 · Short','전망 중심'],['skip','15:00 이후 · SKIP','Misurina 보호']] }},food:[['Cortina · Casual','5 Torri 피자 식당','Cinque Torri를 안 간 날 점심 후보.'],['Cortina · Meal','La Tavernetta 식당','제대로 먹는 선택지.'],['Coffee','Paoletti 카페','Cortina 커피 옵션.'],['Misurina · Dinner','Misurina 산장식당','저녁 후보.']],parking:[['Cinque Torri','Bai de Dones','리프트 출발점 주차 후보.'],['Cortina','CONAD CITY','마트 + 주차장.'],['Cortina','Eurospin','차량 여행용 보급.']],note:'우선순위: Misurina 보호 → Cortina 체류시간 축소 → Giau 체류시간 축소 → Cinque Torri 삭제.'},
+{id:'0822',date:'8/22 토',title:'브라이에스 → 오르티세이 · Braies → Ortisei',subtitle:'Braies 후 오르티세이 이동 · St. John은 날씨 좋을 때만 옵션',tags:[['🅿️','브라이에스 호수 P4 예약 완료','must'],['⛪','성 요한 전망대 옵션','opt'],['🎫','가르데나 카드 구매','must'],['🏨','Hartmann 숙소','hotel']],points:[['Passo Tre Croci 숙소',46.5585,12.2006],['브라이에스 호수 P4',46.6987,12.0857],['오르티세이',46.5751,11.6710],['Hartmann 숙소',46.5704,11.6743]],timeline:[['🚗','출발','P4 예약시간 기준 역산'],['🏞️','Lago di Braies','STANDARD 1.5–2h 기본'],['⛪','St. John은 선택지에서만 판단','날씨·체력 좋을 때만 45–60분 옵션'],['🏘️','오르티세이 입성','Gardena Card는 오르티세이 공식 판매처에서'],['🛒','Despar Dolomiti','필요 시 23일 산행 보급'],['🏨','Hartmann 숙소','체크인 + 오르티세이 저녁']],choices:{braies22:{label:'🏞️ Braies 체류',options:[['quick','QUICK','45–60분'],['standard','STANDARD · 추천','1.5–2시간'],['full','FULL','2.5–3시간']]},john22:{label:'⛪ St. John',options:[['go','날씨 맑음 · GO','뷰포인트만'],['skip','구름/피곤 · SKIP','오르티세이 직행']] }},food:[['Dinner · 1st','Tubladel 식당','워크인 시도 후 대기 길면 대안 이동.'],['Dinner · Backup','Vedl Mulin 식당','중심가 백업.'],['Gelato','Gioia 젤라또','저녁 산책 마무리.'],['Coffee','Soviso 카페','필요할 때만.']],parking:[['St. John','Ranui 주차장','뷰포인트용 유료 후보.'],['오르티세이 · Shop','Parkgarage Central + Despar','Despar 이용 시 최대 3시간 무료 바우처 구조.'],['오르티세이 · Short','Parking Fever','짧은 일정 90분 무료 후보.']],note:'Gardena Card 3일권은 8/22–24 사용 예정. 세체다 탑승 예약 필요 여부는 공식 구매 안내 기준으로 최종 확인.'},
+{id:'0823',date:'8/23 일',title:'세체다 산행 · Seceda Day',subtitle:'케이블카 적극 활용 · Ridge Line 우선',tags:[['🎫','가르데나 카드','must'],['🏔️','세체다 능선','must'],['🛖','피에랄롱기아 산장','must']],points:[['오르티세이 세체다 Valley Station',46.5777,11.6705],['세체다',46.6006,11.7240],['세체다 Ridge',46.6027,11.7247],['Malga Pieralongia',46.5930,11.7390]],timeline:[['🥐','07:30 조식','오픈런에 가깝게'],['🚡','오르티세이 → Furnes → 세체다','Gardena Card'],['📸','세체다 Ridge Line','가장 먼저 핵심 풍경 확보'],['🥾','Pieralongia','STANDARD 기본 루트'],['🛖','산장 점심','Pieralongia / Sofie / Daniel'],['🚡','14–15시 전후 하산','이후 오르티세이 또는 호텔']],choices:{seceda23:{label:'🥾 산 위 강도',options:[['easy','EASY','Ridge + 가까운 산장'],['standard','STANDARD · 추천','Ridge → Pieralongia → 산장'],['full','FULL','날씨·체력 최고일 때만']] }},food:[['Mountain · 1st','Pieralongia 산장','STANDARD 동선과 가장 잘 맞음.'],['Mountain · Meal','Sofie 산장','조금 더 제대로 산장 점심.'],['Mountain · Backup','Daniel 산장','혼잡 시 백업.'],['Dinner','Tubladel → Vedl Mulin 식당','전날 못 간 곳 우선.']],parking:[['세체다','Parkgarage 세체다','하부역 접근성 우선.'],['Alternative','Hotel parking','차를 두고 이동 가능한 경우 비교.']],note:'23일은 숙소 이동 없음. 산 위에서 가장 여유 있게 보내는 날.'},
+{id:'0824',date:'8/24 월',title:'알페 디 시우시 → 산트레 · Alpe di Siusi → Santre',subtitle:'몬트 세우치 → 카이토 전망 포인트 → Santre',tags:[['🧳','짐 싣고 이동하는 날','opt'],['🎫','가르데나 카드','must'],['📸','카이토 전망 포인트','must'],['🏨','산트레 14:00 체크인','hotel']],points:[['Hartmann 숙소',46.5704,11.6743],['오르티세이 · Alpe di Siusi Gondola',46.5725,11.6700],['몬트 세우치',46.5578,11.6639],['카이토 전망 포인트',46.5484,11.6553],['산트레 숙소',46.7069,11.6981]],timeline:[['🧳','체크아웃 + 짐 트렁크','호텔에서 미리 적재'],['🅿️','곤돌라 관리형 주차','무료보다 관리형 우선'],['🚡','오르티세이 → 몬트 세우치','Gardena Card'],['🌿','Alpe di Siusi','Kaito를 최소 성공조건으로'],['📸','카이토 전망 포인트','여기서 종료해도 충분'],['🍽️','Mont Seuc 식당','복귀 후 점심/커피'],['🚗','하산 → Santre','14:00 체크인 가능']],choices:{siusi24:{label:'🌿 Kaito 도착 후',options:[['end','충분히 봄 · 추천','복귀 → 점심 → Santre'],['walk','조금 더 걷기','초원 산책 연장'],['sole','Sole 리프트','Gardena Card 활용'],['full','FULL','오전 매우 빠르고 날씨·체력 최고일 때']] }},food:[['Mountain · Default','Mont Seuc 식당','동선 손실 최소.'],['Santre','호텔 내 식사','체크인 이후 외부 저녁 일정 없음.']],parking:[['Luggage Day','오르티세이–Alpe di Siusi 관리형 주차','캐리어가 차량에 있는 날.'],['Security','차량 보안','귀중품 휴대 · 도착 후 트렁크 열지 않기.']],note:'Santre는 8/24 14:00 체크인. 13시대 복귀 판단 권장.'},
+{id:'0825',date:'8/25 화',title:'산트레 쉬는 날 · Santre Stay Day',subtitle:'기본은 아무 데도 안 나감',tags:[['♨️','산트레에서 쉬기','must'],['☕','브레사노네 2–3시간 옵션','opt'],['🥾','플로제 오전 산책 옵션','opt']],points:[['Santre',46.7069,11.6981]],timeline:[['🥐','조식','늦잠 가능'],['♨️','Santre 풀스테이','기본 추천'],['☕','외출은 선택지에서만 판단','Bressanone/Plose는 심심하거나 걷고 싶을 때만']],choices:{santre25:{label:'🌿 오늘 뭐 할까?',options:[['stay','Santre Stay · 추천','숙소 자체를 목적지로'],['brixen','Bressanone 2–3h','Cathedral → Cloister → 구시가지 → 카페'],['plose','Plose AM','조식 후 걷고 싶을 때만']] }},food:[['Cafe · Bressanone','Pupp 카페','커피·케이크.'],['Alternative','3fiori','현대적인 카페/바.'],['Dinner','Santre','외부 저녁 없음.']],parking:[['Bressanone','Parkhaus Stufels','구시가지 접근 좋은 관리형 주차.'],['Alternative','Park Brixen','무료 후보.']],note:'Santre 체크아웃은 8/26 10:00. 외출은 필수 관광이 아니라 탈출 카드.'},
+{id:'0826',date:'8/26 수',title:'산트레 → 밀라노 · Santre → Milan',subtitle:'밀라노 복귀 + 렌터카 반납 + 첫날 밤',tags:[['🏨','밀라노 NYX 15:00 체크인','hotel'],['🚗','SIXT 반납 ≤20:00','must'],['🌙','두오모 루프탑 옵션','opt']],points:[['Santre',46.7069,11.6981],['밀라노 NYX 호텔',45.4868,9.2027],['밀라노 중앙역 SIXT',45.4859,9.2049],['Duomo di Milano',45.4642,9.1900]],timeline:[['🏨','10:00 Santre 체크아웃','밀라노 방향'],['☕','경유는 선택지에서만 판단','기본은 직행. Trento/Riva/Verona는 피곤하지 않을 때만'],['🏨','NYX 체크인 + 짐 처리','15:00 이후'],['🚗','밀라노 중앙역 SIXT 반납','20:00 마감'],['🌙','첫날 저녁','Duomo/Galleria 가벼운 산책'],['🌃','Rooftop OPTIONAL','내부는 27일 옵션']],choices:{stop26:{label:'🚗 밀라노 전 경유',options:[['direct','바로 밀라노 · 추천','가장 편함'],['trento','Trento','점심/커피'],['riva','Riva del Garda','호수 + 점심/커피'],['verona','Verona','도시 관광 욕구 있을 때']]},night26:{label:'🌙 밀라노 첫날 밤',options:[['duomo','Duomo/Galleria 산책 · 추천','저녁 + 야경'],['roof','Duomo Rooftop','루프탑 야경만'],['easy','Centrale 근처 저녁','피곤하면']] }},food:[['Riva','Leon D\'oro','점심 경유 시.'],['Trento','Forsterbräu 트렌토','빠른 점심.'],['Verona','Nastro Azzurro 식당','압축 경유.'],['Milan Dinner','Risoelatte / Sugo 식당','Duomo 권역.'],['Easy','밀라노 중앙시장 · Mercato Centrale','완전히 지쳤을 때.']],note:'26일 Duomo 내부는 보지 않음. Rooftop은 야경 옵션으로만.'},
+{id:'0827',date:'8/27 목',title:'밀라노 하루 관광 · Milan Full Day',subtitle:'Brera → Montenapoleone → Galleria → Duomo',tags:[['🎨','브레라 지구','must'],['🛍️','몬테나폴레오네 쇼핑','must'],['✨','갤러리아 필수','must'],['⛪','두오모 내부 옵션','opt']],points:[['밀라노 NYX 호텔',45.4868,9.2027],['Brera',45.4722,9.1872],['Via Montenapoleone',45.4684,9.1950],['Teatro alla Scala',45.4675,9.1897],['Galleria Vittorio Emanuele II',45.4658,9.1901],['Duomo',45.4642,9.1900]],timeline:[['🚇','09:30 NYX 출발','Brera부터'],['☕','Brera','Cafezal 카페 선택 + 골목'],['🍝','12:30 점심','Maccheroni 식당 → Da Fortunata → Brera 29'],['🛍️','Montenapoleone','쇼핑. Cova는 휴식용'],['🎭','La Scala 외관','짧게'],['✨','Galleria Vittorio Emanuele II · MUST','최소 30분'],['⛪','Duomo','내부 OPTIONAL'],['🌇','저녁 분기','26일 Rooftop 완료 → Navigli / 미완료 → Rooftop']],choices:{duomo27:{label:'⛪ Duomo',options:[['inside','내부 관람','27일 선택 가능'],['skip','내부 SKIP','쇼핑·브레라·갤러리아 집중']]},night27:{label:'🌇 마지막 저녁',options:[['navigli','Navigli · 추천','26일 Rooftop 완료 시'],['roof','Duomo Rooftop','26일 못 했다면'],['rest','호텔 휴식','여행 막판 체력 보호']] }},food:[['Coffee','Cafezal 카페','Brera 시작할 때.'],['Lunch · 1st','Maccheroni 식당','Brera 점심 1순위.'],['Lunch · Backup','Da Fortunata 식당','워크인 백업.'],['Shopping Break','Cova 몬테나폴레오네','커피/디저트.'],['Navigli Dinner','Sciué 나빌리 식당','Navigli 선택 시.']],note:'차별 관련 명시적 후기 확인된 후보는 제외.'},
+{id:'0828',date:'8/28 금',title:'밀라노 → 파리 → 서울 · Milan → Paris → Seoul',subtitle:'공항버스 + 파리 레이오버',tags:[['🚌','06:40 Centrale → MXP','must'],['✈️','AF1331 11:25','flight'],['🇫🇷','파리 경유 관광 옵션','opt'],['✈️','OZ502 19:10','flight']],points:[['밀라노 NYX 호텔',45.4868,9.2027],['밀라노 중앙역',45.4862,9.2045],['MXP T1',45.6306,8.7231],['CDG T2F',49.0035,2.5702],['CDG T1',49.0097,2.5479]],timeline:[['🎫','8/27 밤','Malpensa Shuttle 티켓 구매 + QR 저장'],['🚌','06:20 승차장 → 06:40 버스','07:50 전후 MXP T1 목표'],['✈️','11:25 AF1331','12:55 CDG 2F'],['🧳','수하물 연결 확인','ICN까지 through-check 여부 확인'],['🇫🇷','파리 시내는 선택지에서만 판단','몽마르트르/루브르/공항대기는 현장 선택'],['🚗','16:00 출발 목표','16:10 HARD CUT-OFF'],['✈️','19:10 OZ502','CDG T1 → ICN']],choices:{transfer28:{label:'🚗 파리 이동',options:[['private','공항 픽업 왕복 차량','가장 안정적. 같은 차량 대기 + T1 샌딩 가능 여부 확인'],['uber','Uber 왕복','몽마르트르 쪽이 상대적으로 보수적'],['cancel','시내 취소','AF1331/입국 지연 시']]},paris28:{label:'🇫🇷 Paris Layover',options:[['montmartre','Montmartre','사크레쾨르 외관/전망 → 점심 → 골목 → CDG. 내부 X'],['louvre','루브르 + 튈르리 정원','루브르 외관 → 점심 → 튈르리 → CDG. 내부 X'],['stay','CDG Stay','리스크가 큰 경우']] }},food:[['Montmartre','Le Poulbot 식당','외관 관광 후 식사 후보.'],['루브르','루브르 근처 식당 · Le Relais du 루브르','오후 애매한 시간 대응.'],['루브르 · Backup','Café de la Régence 카페','백업.']],note:'파리 16:00 출발 목표 / 16:10 HARD CUT-OFF. 15:00 이후 시내 도착 예상이면 SHORT 또는 CANCEL.'},
+{id:'0829',date:'8/29 토',title:'서울 도착 · Home',subtitle:'14:10 ICN T2 도착',tags:[['✈️','인천공항 T2','flight']],points:[['Incheon International Airport T2',37.4691,126.4510]],timeline:[['✈️','14:10 인천 도착','신혼여행 종료']],note:'여행 끝.'}
 ];
 
 const constraints={
 '0818':[['🛏️','오늘은 휴식만','MXP 도착 후 바로 Moxy 체크인. 다음 날 장거리 운전을 위해 관광 일정 없음.']],
-'0819':[['🚗','운전 피로 우선','기본은 휴게소 1회 후 바로 Mestre 체크인. 관광 경유보다 시차·운전 피로 관리 우선.'],['🏨','체크인 먼저','Hotel Plaza 체크인 완료 시각이 저녁 베네치아 범위를 결정.']],
-'0820':[['🎟️','입장 관광 우선','San Marco Basilica와 Doge’s Palace 시간부터 보호.'],['☕','Florian 고정 희망','주요 입장 관광 뒤에 배치해 시간 압박 없이 45–60분.']],
+'0819':[['🚗','운전 피로 우선','기본은 휴게소 1회 후 바로 메스트레 체크인. 관광 경유보다 시차·운전 피로 관리 우선.'],['🏨','체크인 먼저','Hotel Plaza 체크인 완료 시각이 저녁 베네치아 범위를 결정.']],
+'0820':[['🎟️','입장 관광 우선','산마르코 광장 Basilica와 Doge’s Palace 시간부터 보호.'],['☕','Florian 고정 희망','주요 입장 관광 뒤에 배치해 시간 압박 없이 45–60분.']],
 '0821':[['⏰','Cinque Torri 컷오프','15:00 이후 Bai de Dones 도착 예상이면 SKIP 권장.'],['🌅','Misurina 보호','Cinque Torri 때문에 체크인 후 Misurina 저녁을 포기하지 않기.']],
-'0822':[['🅿️','Braies P4 예약 우선','P4 예약시간을 기준으로 하루 출발을 역산.'],['🎫','Gardena Card','Ortisei 도착 후 관광 동선을 깨지 않는 공식 판매처에서 구매.']],
-'0823':[['🌤️','Ridge 먼저','Seceda 정상 도착 후 날씨가 좋을 때 Ridge Line을 가장 먼저 확보.'],['🚡','Gardena Card','Ortisei → Furnes → Seceda 이용. 현장 탑승 조건은 출발 전 최종 확인.']],
-'0824':[['🧳','Luggage Day','귀중품 휴대, 뒷좌석 비우기, 관리형 주차 사용. 주차장 도착 후 트렁크 열지 않기.'],['🏨','Santre 14:00 체크인','Kaito Viewpoint가 기본 성공조건. 13시대부터 복귀 판단해 Santre 시간을 보호.']],
+'0822':[['🅿️','Braies P4 예약 우선','P4 예약시간을 기준으로 하루 출발을 역산.'],['🎫','Gardena Card','오르티세이 도착 후 관광 동선을 깨지 않는 공식 판매처에서 구매.']],
+'0823':[['🌤️','Ridge 먼저','세체다 정상 도착 후 날씨가 좋을 때 Ridge Line을 가장 먼저 확보.'],['🚡','Gardena Card','오르티세이 → Furnes → 세체다 이용. 현장 탑승 조건은 출발 전 최종 확인.']],
+'0824':[['🧳','Luggage Day','귀중품 휴대, 뒷좌석 비우기, 관리형 주차 사용. 주차장 도착 후 트렁크 열지 않기.'],['🏨','Santre 14:00 체크인','카이토 전망 포인트가 기본 성공조건. 13시대부터 복귀 판단해 Santre 시간을 보호.']],
 '0825':[['♨️','숙소가 메인','기본값은 Santre 풀스테이. 외출은 심심할 때만.']],
-'0826':[['🚗','차량 반납 20:00','NYX 체크인·짐 처리 후 Milano Centrale SIXT 반납. 밀라노 시내 관광에 차를 쓰지 않기.'],['🌙','Duomo 내부는 내일','오늘은 외관/야경, Rooftop만 옵션.']],
+'0826':[['🚗','차량 반납 20:00','NYX 체크인·짐 처리 후 밀라노 중앙역 SIXT 반납. 밀라노 시내 관광에 차를 쓰지 않기.'],['🌙','Duomo 내부는 내일','오늘은 외관/야경, Rooftop만 옵션.']],
 '0827':[['✨','Galleria MUST','Brera → Montenapoleone → La Scala → Galleria → Duomo 순서 유지.'],['🌇','저녁은 전날 연동','8/26 Rooftop 완료 시 Navigli, 미완료 시 Rooftop 우선.']],
-'0828':[['🚌','06:40 공항버스','06:20까지 Milano Centrale 승차장 도착. 티켓은 8/27 밤 미리 구매.'],['🚨','16:10 HARD CUT-OFF','파리 어디에 있든 16:00 출발 목표, 16:10을 넘기지 않기.'],['✈️','귀국편 보호','AF1331/입국이 늦으면 파리 SHORT 또는 CANCEL. OZ502 19:10 T1 우선.']],
+'0828':[['🚌','06:40 공항버스','06:20까지 밀라노 중앙역 승차장 도착. 티켓은 8/27 밤 미리 구매.'],['🚨','16:10 HARD CUT-OFF','파리 어디에 있든 16:00 출발 목표, 16:10을 넘기지 않기.'],['✈️','귀국편 보호','AF1331/입국이 늦으면 파리 SHORT 또는 CANCEL. OZ502 19:10 T1 우선.']],
 '0829':[['🏠','귀국','14:10 ICN T2 도착.']]
 };
 
@@ -68,7 +68,7 @@ const optionMap={
     go:{points:[['St. John Church Viewpoint',46.6428,11.7198],['Ranui 주차장',46.6417,11.7154]], note:'St. John 옵션 선택됨'}
   },
   santre25:{
-    brixen:{points:[['Brixen Cathedral',46.7161,11.6566],['Bressanone Old Town',46.7165,11.6578]], note:'Bressanone 외출 선택됨'},
+    brixen:{points:[['브릭센 대성당',46.7161,11.6566],['브레사노네 구시가지',46.7165,11.6578]], note:'Bressanone 외출 선택됨'},
     plose:{points:[['Plose',46.6980,11.7360]], note:'Plose AM 선택됨'}
   },
   stop26:{
@@ -77,12 +77,12 @@ const optionMap={
     verona:{points:[['Verona',45.4384,10.9916]], note:'Verona 경유 선택됨'}
   },
   paris28:{
-    montmartre:{points:[['Sacré-Cœur',48.8867,2.3431]], note:'Montmartre 선택됨'},
-    louvre:{points:[['Louvre',48.8606,2.3376],['Tuileries',48.8635,2.3270]], note:'Louvre + Tuileries 선택됨'}
+    montmartre:{points:[['사크레쾨르',48.8867,2.3431]], note:'Montmartre 선택됨'},
+    louvre:{points:[['루브르',48.8606,2.3376],['튈르리 정원',48.8635,2.3270]], note:'루브르 + 튈르리 정원 선택됨'}
   }
 };
 const placeContext={
-  '0818':'Milan Malpensa Italy','0819':'Venice Italy','0820':'Venice Italy','0821':'Cortina d’Ampezzo Italy','0822':'Ortisei Italy','0823':'Ortisei Seceda Italy','0824':'Ortisei Alpe di Siusi Italy','0825':'Bressanone Italy','0826':'Milan Italy','0827':'Milan Italy','0828':'Paris France','0829':'Incheon Korea'
+  '0818':'Milan Malpensa Italy','0819':'Venice Italy','0820':'Venice Italy','0821':'Cortina d’Ampezzo Italy','0822':'오르티세이 Italy','0823':'오르티세이 세체다 Italy','0824':'오르티세이 Alpe di Siusi Italy','0825':'Bressanone Italy','0826':'Milan Italy','0827':'Milan Italy','0828':'Paris France','0829':'Incheon Korea'
 };
 function contextualName(name,ctx=''){
   const n=String(name||'').trim();
@@ -98,53 +98,135 @@ const placeOverrides={
   'Moxy Milan Malpensa':'Moxy Milan Malpensa Airport Italy',
   'Sirmione':'Sirmione Italy',
   'Hotel Plaza Mestre':'Hotel Plaza Mestre Venice Italy',
-  'Venezia Santa Lucia':'Venezia Santa Lucia Venice Italy',
-  'Rialto':'Rialto Bridge Venice Italy',
-  'San Marco':'Piazza San Marco Venice Italy',
-  'Lago di Braies P4':'Lago di Braies P4 Parking Italy',
+  '베네치아 산타루치아역':'베네치아 산타루치아역 Venice Italy',
+  '리알토 다리':'리알토 다리 Bridge Venice Italy',
+  '산마르코 광장':'산마르코 광장 Venice Italy',
+  '브라이에스 호수 P4':'브라이에스 호수 P4 Parking Italy',
   'St. John Church Viewpoint':'St. John Church Viewpoint Ranui Val di Funes Italy',
   'Ranui 주차장':'Ranui Parkplatz Val di Funes Italy',
-  'Parkgarage Central + Despar':'Parkgarage Central Ortisei Despar Italy',
-  'Parking Fever':'Parking Fever Ortisei Italy',
-  'Chalet Hotel Hartmann':'Chalet Hotel Hartmann Ortisei Italy',
-  'Santre dolomythic home':'Santre dolomythic home Bressanone Italy',
-  'Santre':'Santre dolomythic home Bressanone Italy',
-  'Brixen Cathedral':'Brixen Cathedral Bressanone Italy',
+  'Parkgarage Central + Despar':'Parkgarage Central 오르티세이 Despar Italy',
+  'Parking Fever':'Parking Fever 오르티세이 Italy',
+  'Hartmann 숙소':'Hartmann 숙소 오르티세이 Italy',
+  '산트레 숙소':'산트레 숙소 Bressanone Italy',
+  'Santre':'산트레 숙소 Bressanone Italy',
+  '브릭센 대성당':'브릭센 대성당 Bressanone Italy',
   'Plose':'Plose Bressanone Italy',
   'Trento':'Trento Italy',
   'Riva del Garda':'Riva del Garda Italy',
   'Verona':'Verona Italy',
   "Leon D\'oro":"Ristorante Leon d\'Oro Riva del Garda Italy",
-  'Forsterbräu Trento':'Forsterbräu Trento Italy',
-  'Nastro Azzurro':'Ristorante Nastro Azzurro Verona Italy',
-  'Milano Centrale':'Milano Centrale Milan Italy',
-  'Milano Centrale SIXT':'SIXT Milano Centrale Milan Italy',
+  'Forsterbräu 트렌토':'Forsterbräu 트렌토 Italy',
+  'Nastro Azzurro 식당':'Ristorante Nastro Azzurro 식당 Verona Italy',
+  '밀라노 중앙역':'밀라노 중앙역 Milan Italy',
+  '밀라노 중앙역 SIXT':'SIXT 밀라노 중앙역 Milan Italy',
   'Duomo':'Duomo di Milano Milan Italy',
   'Duomo di Milano':'Duomo di Milano Milan Italy',
-  'NYX Hotel Milan':'NYX Hotel Milan Italy',
-  'Cova Montenapoleone':'Cova Montenapoleone Milan Italy',
-  'Maccheroni':'Maccheroni Milan Brera Italy',
-  'Suso':'Suso Gelatoteca Venice Italy',
-  'Caffè del Doge':'Caffè del Doge Rialto Venice Italy',
+  '밀라노 NYX 호텔':'밀라노 NYX 호텔 Italy',
+  'Cova 몬테나폴레오네':'Cova 몬테나폴레오네 Milan Italy',
+  'Maccheroni 식당':'Maccheroni 식당 Milan Brera Italy',
+  'Suso 젤라또':'Suso Gelatoteca Venice Italy',
+  'Caffè del Doge 카페':'Caffè del Doge 카페 Venice Italy',
   'Da Cherubino':'Ristorante Da Cherubino Venice Italy',
   "Dal Moro\'s":"Dal Moro\'s Fresh Pasta To Go Venice Italy",
-  "Caffè Paoletti":"Caffè Paoletti Cortina d\'Ampezzo Italy",
-  'Malga Misurina':'Malga Misurina Lago di Misurina Italy',
-  'Soviso Cafe':'Soviso Cafe Ortisei Italy',
-  'Malga Pieralongia Alm':'Malga Pieralongia Alm Seceda Italy',
-  'Baita Sofie Hütte':'Baita Sofie Hütte Seceda Italy',
-  'Baita Daniel Hütte':'Baita Daniel Hütte Alpe di Siusi Italy',
-  'Restaurant Mont Seuc':'Restaurant Mont Seuc Alpe di Siusi Italy',
+  "Paoletti 카페":"Paoletti 카페 코르티나 담페초 Italy",
+  'Misurina 산장식당':'Misurina 산장식당 미주리나 호수 Italy',
+  'Soviso 카페':'Soviso 카페 오르티세이 Italy',
+  'Pieralongia 산장':'Pieralongia 산장 세체다 Italy',
+  'Sofie 산장':'Sofie 산장 세체다 Italy',
+  'Daniel 산장':'Daniel 산장 Alpe di Siusi Italy',
+  'Mont Seuc 식당':'Mont Seuc 식당 Alpe di Siusi Italy',
   'CDG T2F':'CDG Terminal 2F Paris Charles de Gaulle Airport France',
   'CDG T1':'CDG Terminal 1 Paris Charles de Gaulle Airport France'
 };
-const nonMapNames=new Set(['호텔 내 식사','차량 보안','Hotel parking','Ortisei–Alpe di Siusi 관리형 주차']);
+const nonMapNames=new Set(['호텔 내 식사','차량 보안','Hotel parking','오르티세이–Alpe di Siusi 관리형 주차']);
 const mapListExcludeNames=new Set(['Bai de Dones']);
+const displaySearchOverrides={
+  'Parkgarage Central + Despar':'Parkgarage Central Ortisei Italy',
+  'Parking Fever':'Parking Fever Ortisei Italy',
+  'Santre':'Santre dolomythic home Bressanone Italy',
+  '밀라노 중앙역 SIXT':'SIXT Milano Centrale Milan Italy',
+  'Nastro Azzurro 식당':'Ristorante Nastro Azzurro Verona Italy',
+  '5 Torri 피자 식당':'Ristorante Pizzeria 5 Torri Cortina d Ampezzo Italy',
+  'La Tavernetta 식당':'La Tavernetta di Cortina Cortina d Ampezzo Italy',
+  'Paoletti 카페':'Caffè Paoletti Cortina d Ampezzo Italy',
+  'Misurina 산장식당':'Malga Misurina Lago di Misurina Italy',
+  'Tubladel 식당':'Restaurant Tubladel Ortisei Italy',
+  'Vedl Mulin 식당':'Vedl Mulin Ortisei Italy',
+  'Gioia 젤라또':'Squisitezze Gioia Ortisei Italy',
+  'Soviso 카페':'Soviso Cafe Ortisei Italy',
+  'Parkgarage Central 오르티세이 Despar':'Parkgarage Central Ortisei Italy',
+  'Parking Fever 오르티세이':'Parking Fever Ortisei Italy',
+  '오르티세이 세체다 Valley Station':'Ortisei Seceda Valley Station Italy',
+  '세체다 Ridge':'Seceda Ridge Italy',
+  'Malga Pieralongia':'Malga Pieralongia Alm Seceda Italy',
+  'Pieralongia 산장':'Malga Pieralongia Alm Seceda Italy',
+  'Tubladel':'Restaurant Tubladel Ortisei Italy',
+  'Parkgarage 세체다':'Parkgarage Seceda Ortisei Italy',
+  '오르티세이 · Alpe di Siusi Gondola':'Ortisei Alpe di Siusi Gondola Italy',
+  '산트레 숙소':'Santre dolomythic home Bressanone Italy',
+  'SIXT 밀라노 중앙역':'SIXT Milano Centrale Milan Italy',
+  'Forsterbräu 트렌토':'Forsterbräu Trento Italy',
+  'Ristorante Nastro Azzurro 식당':'Ristorante Nastro Azzurro Verona Italy',
+  'Sugo 식당':'Sugo Milan Italy',
+  '루브르 근처 식당 · Le Relais du 루브르':'Le Relais du Louvre Paris France',
+  '루브르 근처 식당 · Le Relais du Louvre':'Le Relais du Louvre Paris France',
+  '베네치아 산타루치아역':'Venezia Santa Lucia, Venice Italy',
+  '리알토 다리':'Rialto Bridge Venice Italy',
+  '산마르코 광장':'Piazza San Marco Venice Italy',
+  '산마르코 대성당':'Basilica di San Marco Venice Italy',
+  '아카데미아 다리':'Ponte dell Accademia Venice Italy',
+  'Pontini 식당':'Trattoria Bar Pontini Venice Italy',
+  'Alla Fontana 식당':'Trattoria Alla Fontana Venice Italy',
+  'Caffè del Doge 카페':'Caffè del Doge Rialto Venice Italy',
+  'Suso Gelatoteca':'Suso Gelatoteca Venice Italy',
+  'Suso 젤라또':'Suso Gelatoteca Venice Italy',
+  'Al Squero 치케티 바':'Osteria Al Squero Venice Italy',
+  'Gelateria il Doge':'Gelateria il Doge Venice Italy',
+  '자우 고개 · Passo Giau':'Passo Giau Dolomites Italy',
+  '코르티나 담페초':'Cortina d Ampezzo Italy',
+  'Passo Tre Croci 숙소':'B&B HOTEL Passo Tre Croci Cortina Italy',
+  '미주리나 호수':'Lago di Misurina Italy',
+  '브라이에스 호수 P4':'Lago di Braies P4 Italy',
+  '오르티세이':'Ortisei Italy',
+  'Hartmann 숙소':'Chalet Hotel Hartmann Ortisei Italy',
+  '세체다':'Seceda Ortisei Italy',
+  '세체다 능선':'Seceda Ridge Italy',
+  '피에랄롱기아 산장':'Malga Pieralongia Alm Seceda Italy',
+  'Sofie 산장':'Baita Sofie Hütte Seceda Italy',
+  'Daniel 산장':'Baita Daniel Hütte Seceda Italy',
+  '몬트 세우치':'Mont Sëuc Alpe di Siusi Italy',
+  '카이토 전망 포인트':'Kaito Viewpoint Alpe di Siusi Italy',
+  'Mont Seuc 식당':'Restaurant Mont Seuc Alpe di Siusi Italy',
+  '산트레 숙소':'Santre dolomythic home Bressanone Italy',
+  '브릭센 대성당':'Brixen Cathedral Italy',
+  '브레사노네 구시가지':'Bressanone Old Town Italy',
+  'Pupp 카페':'Pupp Café Bressanone Italy',
+  '플로제 오전 산책 옵션':'Plose Bressanone Italy',
+  '밀라노 NYX 호텔':'NYX Hotel Milan Italy',
+  '밀라노 중앙역':'Milano Centrale Italy',
+  '두오모 루프탑 옵션':'Duomo Rooftop Milan Italy',
+  '브레라 지구':'Brera Milan Italy',
+  '몬테나폴레오네 쇼핑':'Via Montenapoleone Milan Italy',
+  '갤러리아 필수':'Galleria Vittorio Emanuele II Milan Italy',
+  '밀라노 중앙시장 · Mercato Centrale':'Mercato Centrale Milano Italy',
+  'Cova 몬테나폴레오네':'Cova Montenapoleone Milan Italy',
+  'Maccheroni 식당':'Maccheroni Milan Italy',
+  'Da Fortunata 식당':'Osteria Da Fortunata Milan Italy',
+  'Sciué 나빌리 식당':'Sciué Navigli Milan Italy',
+  'Cafezal 카페':'Cafezal Milan Italy',
+  '사크레쾨르':'Sacré-Cœur Paris France',
+  '루브르':'Louvre Paris France',
+  '튈르리 정원':'Tuileries Garden Paris France',
+  'Le Poulbot 식당':'Le Poulbot Montmartre Paris France',
+  '루브르 근처 식당 · Le Relais du Louvre':'Le Relais du Louvre Paris France',
+  'Café de la Régence 카페':'Café de la Régence Paris France',
+  '인천공항 T2':'Incheon International Airport Terminal 2 Korea'
+};
 function splitPlaceNames(name){return String(name||'').split(/\s*(?:→|\/)\s*/).map(x=>x.trim()).filter(Boolean)}
 function searchName(name,ctx=''){
   const n=String(name||'').trim();
   if(!n||nonMapNames.has(n))return '';
-  return placeOverrides[n]||contextualName(n,ctx);
+  return displaySearchOverrides[n]||placeOverrides[n]||contextualName(n,ctx);
 }
 function esc(s){return String(s).replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#039;"}[m]))}
 const store={
