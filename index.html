@@ -65,6 +65,60 @@ function contextualName(name,ctx=''){
   if(/italy|france|korea|paris|venice|milan|ortisei|cortina|bressanone/i.test(n))return n;
   return `${n}, ${c}`;
 }
+const placeOverrides={
+  'MXP T2':'MXP Terminal 2, Milan Malpensa Airport Italy',
+  'MXP T1':'MXP Terminal 1, Milan Malpensa Airport Italy',
+  'SIXT MXP T2':'SIXT Malpensa Terminal 2, Milan Malpensa Airport Italy',
+  'Moxy Milan Malpensa':'Moxy Milan Malpensa Airport Italy',
+  'Sirmione':'Sirmione Italy',
+  'Hotel Plaza Mestre':'Hotel Plaza Mestre Venice Italy',
+  'Venezia Santa Lucia':'Venezia Santa Lucia Venice Italy',
+  'Rialto':'Rialto Bridge Venice Italy',
+  'San Marco':'Piazza San Marco Venice Italy',
+  'Lago di Braies P4':'Lago di Braies P4 Parking Italy',
+  'St. John Church Viewpoint':'St. John Church Viewpoint Ranui Val di Funes Italy',
+  'Ranui 주차장':'Ranui Parkplatz Val di Funes Italy',
+  'Parkgarage Central + Despar':'Parkgarage Central Ortisei Despar Italy',
+  'Parking Fever':'Parking Fever Ortisei Italy',
+  'Chalet Hotel Hartmann':'Chalet Hotel Hartmann Ortisei Italy',
+  'Santre dolomythic home':'Santre dolomythic home Bressanone Italy',
+  'Santre':'Santre dolomythic home Bressanone Italy',
+  'Brixen Cathedral':'Brixen Cathedral Bressanone Italy',
+  'Plose':'Plose Bressanone Italy',
+  'Trento':'Trento Italy',
+  'Riva del Garda':'Riva del Garda Italy',
+  'Verona':'Verona Italy',
+  "Leon D\'oro":"Ristorante Leon d\'Oro Riva del Garda Italy",
+  'Forsterbräu Trento':'Forsterbräu Trento Italy',
+  'Nastro Azzurro':'Ristorante Nastro Azzurro Verona Italy',
+  'Milano Centrale':'Milano Centrale Milan Italy',
+  'Milano Centrale SIXT':'SIXT Milano Centrale Milan Italy',
+  'Duomo':'Duomo di Milano Milan Italy',
+  'Duomo di Milano':'Duomo di Milano Milan Italy',
+  'NYX Hotel Milan':'NYX Hotel Milan Italy',
+  'Cova Montenapoleone':'Cova Montenapoleone Milan Italy',
+  'Maccheroni':'Maccheroni Milan Brera Italy',
+  'Suso':'Suso Gelatoteca Venice Italy',
+  'Caffè del Doge':'Caffè del Doge Rialto Venice Italy',
+  'Da Cherubino':'Ristorante Da Cherubino Venice Italy',
+  "Dal Moro\'s":"Dal Moro\'s Fresh Pasta To Go Venice Italy",
+  "Caffè Paoletti":"Caffè Paoletti Cortina d\'Ampezzo Italy",
+  'Malga Misurina':'Malga Misurina Lago di Misurina Italy',
+  'Soviso Cafe':'Soviso Cafe Ortisei Italy',
+  'Malga Pieralongia Alm':'Malga Pieralongia Alm Seceda Italy',
+  'Baita Sofie Hütte':'Baita Sofie Hütte Seceda Italy',
+  'Baita Daniel Hütte':'Baita Daniel Hütte Alpe di Siusi Italy',
+  'Restaurant Mont Seuc':'Restaurant Mont Seuc Alpe di Siusi Italy',
+  'CDG T2F':'CDG Terminal 2F Paris Charles de Gaulle Airport France',
+  'CDG T1':'CDG Terminal 1 Paris Charles de Gaulle Airport France'
+};
+const nonMapNames=new Set(['호텔 내 식사','차량 보안','Hotel parking','Ortisei–Alpe di Siusi 관리형 주차']);
+function splitPlaceNames(name){return String(name||'').split(/\s*(?:→|\/)\s*/).map(x=>x.trim()).filter(Boolean)}
+function searchName(name,ctx=''){
+  const n=String(name||'').trim();
+  if(!n||nonMapNames.has(n))return '';
+  return placeOverrides[n]||contextualName(n,ctx);
+}
 function esc(s){return String(s).replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#039;"}[m]))}
 const store={
   get(k){try{return localStorage.getItem(k)}catch(e){return null}},
@@ -72,9 +126,9 @@ const store={
   remove(k){try{localStorage.removeItem(k)}catch(e){}},
   keys(){try{return Object.keys(localStorage)}catch(e){return []}}
 };
-function gmUrl(name,lat,lon){const q=(typeof lat==='number'&&typeof lon==='number')?`${lat},${lon}`:name;return `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(q)}`}
+function gmUrl(name,lat,lon){const q=String(name||'').trim()||((typeof lat==='number'&&typeof lon==='number')?`${lat},${lon}`:'');return `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(q)}`}
 function amUrl(name,lat,lon){if(typeof lat==='number'&&typeof lon==='number')return `https://maps.apple.com/?ll=${encodeURIComponent(lat+','+lon)}&q=${encodeURIComponent(name)}`;return `https://maps.apple.com/?q=${encodeURIComponent(name)}`}
-function mapButtons(name,lat,lon,ctx=''){const q=contextualName(name,ctx);return `<div class="place-actions"><a class="map-link google" target="_blank" rel="noopener" href="${gmUrl(q,lat,lon)}">Google Maps</a><a class="map-link apple" target="_blank" rel="noopener" href="${amUrl(q,lat,lon)}">Apple Maps</a></div>`}
+function mapButtons(name,lat,lon,ctx=''){const parts=splitPlaceNames(name).map(n=>searchName(n,ctx)).filter(Boolean);if(!parts.length)return '';return `<div class="place-actions">${parts.map((q,i)=>`<a class="map-link google" target="_blank" rel="noopener" href="${gmUrl(q,lat,lon)}">${parts.length>1?'Google '+(i+1):'Google Maps'}</a><a class="map-link apple" target="_blank" rel="noopener" href="${amUrl(q,lat,lon)}">${parts.length>1?'Apple '+(i+1):'Apple Maps'}</a>`).join('')}</div>`}
 
 function emojiFor(kind,name=''){
   const s=(kind+' '+name).toLowerCase();
@@ -92,9 +146,9 @@ function emojiFor(kind,name=''){
 }
 function mapEntryRows(d){
   const rows=[];
-  (d.points||[]).forEach((p,i)=>rows.push({label:`${i+1}. ${p[0]}`,name:p[0],lat:p[1],lon:p[2],emoji:emojiFor('point',p[0])}));
-  (d.food||[]).forEach(x=>rows.push({label:`${emojiFor('food '+x[0],x[1])} ${x[1]}`,name:contextualName(x[1],placeContext[d.id]),emoji:emojiFor('food '+x[0],x[1]),kind:'food'}));
-  (d.parking||[]).forEach(x=>rows.push({label:`${emojiFor('parking',x[1])} ${x[1]}`,name:contextualName(x[1],placeContext[d.id]),emoji:emojiFor('parking',x[1]),kind:'parking'}));
+  (d.points||[]).forEach((p,i)=>{const q=searchName(p[0],placeContext[d.id]);if(q)rows.push({label:`${i+1}. ${p[0]}`,name:q,lat:p[1],lon:p[2],emoji:emojiFor('point',p[0])})});
+  (d.food||[]).forEach(x=>splitPlaceNames(x[1]).forEach(n=>{const q=searchName(n,placeContext[d.id]);if(q)rows.push({label:`${emojiFor('food '+x[0],n)} ${n}`,name:q,emoji:emojiFor('food '+x[0],n),kind:'food'})}));
+  (d.parking||[]).forEach(x=>splitPlaceNames(x[1]).forEach(n=>{const q=searchName(n,placeContext[d.id]);if(q)rows.push({label:`${emojiFor('parking',n)} ${n}`,name:q,emoji:emojiFor('parking',n),kind:'parking'})}));
   return rows;
 }
 function dateForId(id){return new Date(2026,Number(id.slice(0,2))-1,Number(id.slice(2,4)))}
@@ -111,7 +165,7 @@ function mapPlacesHTML(d){const rows=mapEntryRows(d);if(!rows.length)return'';re
 function renderContent(){content.innerHTML=trip.map(d=>`<section class="day-card" id="day-${d.id}"><div class="top-grid"><div class="panel"><div class="panel-body"><div class="day-title"><div><div class="eyebrow" style="color:#6a665f">${esc(d.date)}${isDeviceToday(d.id)?'<span class="today-badge">오늘</span>':''}</div><h2>${esc(d.title)}</h2><p>${esc(d.subtitle)}</p></div></div>${tagHTML(d.tags)}${constraintsHTML(d.id)}<div style="height:16px"></div><h3 class="section-title">오늘의 흐름</h3>${timelineHTML(d.timeline)}<label class="done-toggle"><input type="checkbox" class="done-check" data-id="${d.id}"> 오늘 일정 완료</label></div></div><div class="panel"><div class="panel-body" style="padding-bottom:12px"><h3 class="section-title">지도</h3><div class="footer-note">지도 타일이 안 뜨면 아래 Google/Apple Maps 버튼을 사용하세요.</div>${mapPlacesHTML(d)}</div><div class="map-shell"><div class="map" id="map-${d.id}"></div><div class="map-fallback" id="map-fallback-${d.id}"><div class="map-fallback-inner"><b>지도를 불러오지 못했어요.</b><p>인터넷 연결 또는 지도 타일 서버 상태를 확인하세요. 위 장소 목록의 Google Maps / Apple Maps 버튼은 그대로 사용할 수 있습니다.</p></div></div></div></div></div>${d.choices?`<div class="panel"><div class="panel-body"><h3 class="section-title">현장 선택</h3>${choicesHTML(d)}</div></div>`:''}<div class="split">${placesHTML(d.food,'식당 · 카페',placeContext[d.id])}${placesHTML(d.parking,'주차 · 보급',placeContext[d.id])}</div><div class="panel"><div class="panel-body"><h3 class="section-title">메모</h3><div class="alert ${d.id==='0828'?'danger':''}">${esc(d.note||'')}</div></div></div></section>`).join('');content.querySelectorAll('input[type=radio]').forEach(r=>r.onchange=e=>{store.set('choice_'+e.target.name,e.target.value);document.querySelectorAll(`input[name="${e.target.name}"]`).forEach(x=>x.closest('.choice').classList.toggle('selected',x.checked))});content.querySelectorAll('.done-check').forEach(c=>{c.checked=store.get('done_'+c.dataset.id)==='1';c.onchange=()=>store.set('done_'+c.dataset.id,c.checked?'1':'0')})}
 const maps={};
 function showMapFallback(id){const el=document.getElementById('map-fallback-'+id);if(el)el.classList.add('show')}
-function initMap(d){if(maps[d.id]){setTimeout(()=>maps[d.id].invalidateSize(),100);return}if(!d.points?.length){showMapFallback(d.id);return}if(!window.L){showMapFallback(d.id);return}try{const m=L.map('map-'+d.id,{scrollWheelZoom:false,tap:true});let tileLoaded=false,tileErrors=0;const tiles=L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{maxZoom:19,attribution:'&copy; OpenStreetMap'}).addTo(m);tiles.on('tileload',()=>{tileLoaded=true;const f=document.getElementById('map-fallback-'+d.id);if(f)f.classList.remove('show')});tiles.on('tileerror',()=>{tileErrors++;if(tileErrors>=3&&!tileLoaded)showMapFallback(d.id)});const bounds=[];d.points.forEach((p,i)=>{const icon=L.divIcon({className:'emoji-marker',html:`<span>${emojiFor('point',p[0])}</span><b>${i+1}</b>`,iconSize:[34,34],iconAnchor:[17,17]});L.marker([p[1],p[2]],{icon}).addTo(m).bindPopup(`<b>${esc(p[0])}</b><br><div style="margin-top:7px"><a target="_blank" rel="noopener" href="${gmUrl(p[0],p[1],p[2])}">Google Maps</a> · <a target="_blank" rel="noopener" href="${amUrl(p[0],p[1],p[2])}">Apple Maps</a></div>`);bounds.push([p[1],p[2]])});m.fitBounds(bounds,{padding:[24,24],maxZoom:12});maps[d.id]=m;setTimeout(()=>{if(!tileLoaded)showMapFallback(d.id)},7000)}catch(e){showMapFallback(d.id)}}
+function initMap(d){if(maps[d.id]){setTimeout(()=>maps[d.id].invalidateSize(),100);return}if(!d.points?.length){showMapFallback(d.id);return}if(!window.L){showMapFallback(d.id);return}try{const m=L.map('map-'+d.id,{scrollWheelZoom:false,tap:true});let tileLoaded=false,tileErrors=0;const tiles=L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{maxZoom:19,attribution:'&copy; OpenStreetMap'}).addTo(m);tiles.on('tileload',()=>{tileLoaded=true;const f=document.getElementById('map-fallback-'+d.id);if(f)f.classList.remove('show')});tiles.on('tileerror',()=>{tileErrors++;if(tileErrors>=3&&!tileLoaded)showMapFallback(d.id)});const bounds=[];d.points.forEach((p,i)=>{const q=searchName(p[0],placeContext[d.id]);const icon=L.divIcon({className:'emoji-marker',html:`<span>${emojiFor('point',p[0])}</span><b>${i+1}</b>`,iconSize:[34,34],iconAnchor:[17,17]});L.marker([p[1],p[2]],{icon}).addTo(m).bindPopup(`<b>${esc(p[0])}</b><br><div style="margin-top:7px"><a target="_blank" rel="noopener" href="${gmUrl(q,p[1],p[2])}">Google Maps</a> · <a target="_blank" rel="noopener" href="${amUrl(q,p[1],p[2])}">Apple Maps</a></div>`);bounds.push([p[1],p[2]])});m.fitBounds(bounds,{padding:[24,24],maxZoom:12});maps[d.id]=m;setTimeout(()=>{if(!tileLoaded)showMapFallback(d.id)},7000)}catch(e){showMapFallback(d.id)}}
 function hashTripId(){const h=(location.hash||'').replace('#','');return trip.some(d=>d.id===h)?h:null}
 let activeId=hashTripId()||todayTripId();
 function updateSwitcher(id){const idx=trip.findIndex(d=>d.id===id),d=trip[idx];prevDay.disabled=idx<=0;nextDay.disabled=idx>=trip.length-1;switcherLabel.textContent=`${d.date} · ${d.title}`;switcherSub.textContent=isDeviceToday(id)?'오늘 일정':'이전 / 다음 날짜';const navBtn=document.querySelector(`.day-btn[data-id="${id}"]`);if(navBtn)navBtn.scrollIntoView({behavior:'smooth',block:'nearest',inline:'center'})}
