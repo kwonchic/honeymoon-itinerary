@@ -184,37 +184,35 @@ const optionDetails={
 };
 const steakOptions={
   '0819':[
-    {id:'al_timon',name:'Al Timon',area:'Cannaregio',style:'Steak / grilled meat / Venetian bacaro',priority:'★★',badge:'GOOD FOR CANNAREGIO EVENING',why:'Cannaregio 일정과 결합하기 쉬워 첫날 베네치아 저녁 동선 이탈이 적습니다.',logic:'8/19 우선 후보',lat:45.4455614,lon:12.3284369},
-    {id:'la_vacaria',name:'La Vacaria',area:'Dorsoduro',style:'Steakhouse / premium beef',priority:'★★★',badge:'DETOUR REQUIRED',why:'베네치아에서 스테이크 자체를 중요하게 생각하면 강한 후보입니다. 다만 8/19 기본 동선에서는 Dorsoduro까지 내려가야 합니다.',logic:'스테이크 최우선일 때 대안',lat:45.4344292,lon:12.3167233}
+    {id:'al_timon',name:'Al Timon',area:'Cannaregio',address:'Fondamenta dei Ormesini, 2754, Venezia',style:'Italian / Steakhouse / Wine Bar',priority:'★★★',badge:'BEST ROUTE FIT',why:'8/19 Cannaregio itinerary 안에 사실상 그대로 위치합니다. Tomahawk / Chateaubriand 등 meat review가 좋고, 최근 2026 리뷰에서도 steak 평가가 좋습니다. 예약 없이 방문 후 짧게 기다려 입장했다는 최근 사례도 있습니다.',caution:'매우 인기 있고 혼잡할 수 있으며, 최근 서비스 평가는 약간의 편차가 있습니다.',logic:'8/19 steak option #1',lat:45.4455614,lon:12.3284369},
+    {id:'al_grill',name:'Al Grill',area:'San Marco / La Fenice',address:'San Marco 1659B, Venezia',style:'Italian Steakhouse / Dry-aged Beef / Fiorentina / Tomahawk',priority:'★★★',badge:'SAN MARCO REACHED ONLY',conditional:'San Marco reached only',why:'8/19에 일찍 도착해 San Marco까지 진행하는 EARLY itinerary일 경우 결합 가능합니다. Venice steakhouse 자체 품질은 Al Timon보다 강한 후보입니다.',logic:'늦은 체크인 → Al Timon / San Marco까지 진행 → Al Grill',lat:45.4348289,lon:12.3340247}
   ],
   '0820':[
-    {id:'la_vacaria',name:'La Vacaria',area:'Dorsoduro',style:'Steakhouse / premium beef / Tomahawk / Fiorentina-style cuts',priority:'★★★',badge:'BEST VENICE STEAK OPTION',highlight:'🥩 BEST VENICE',why:'이날 Dorsoduro가 원래 동선에 있어 베네치아 일정 중 스테이크 궁합이 가장 좋습니다.',logic:'기본 1순위',lat:45.4344292,lon:12.3167233},
-    {id:'al_timon',name:'Al Timon',area:'Cannaregio',style:'Steak / grilled meat / Venetian bacaro',priority:'★★',badge:'GOOD IF RETURNING TO CANNAREGIO',why:'전날 Cannaregio를 충분히 못 봤거나 저녁에 Cannaregio 방향으로 이동할 때 쓰기 좋습니다.',logic:'Cannaregio 복귀 시 선택',lat:45.4455614,lon:12.3284369}
+    {id:'la_vacaria',name:'La Vacaria',area:'Dorsoduro',address:"Fondamenta de L'Arzere 2245, Dorsoduro, Venezia",style:'Steakhouse / Grill / Fiorentina / Rubia Gallega / Tomahawk',priority:'★★★★',badge:'🥩 BEST VENICE PICK',highlight:'🥩 BEST VENICE',why:'8/20 Dorsoduro itinerary와 매우 잘 맞습니다. 한국인 Tripadvisor 리뷰가 확인되고, 신혼여행객 리뷰에서 직원 친절과 음식, Tomahawk 평가가 좋았습니다. 16:00 이후 영업이라 저녁 itinerary와 맞습니다.',logic:'Dorsoduro에서 저녁 → La Vacaria',lat:45.4344292,lon:12.3167233},
+    {id:'al_grill',name:'Al Grill',area:'San Marco / La Fenice',address:'San Marco 1659B, Venezia',style:'Italian Steakhouse / Dry-aged Steak / Fiorentina / Tomahawk',priority:'★★★',badge:'BEST SAN MARCO STEAK',why:'오전/낮 San Marco itinerary와 지리적으로 가깝습니다. 최근 steak 리뷰와 직원 친절 평가가 강합니다.',logic:'San Marco 쪽에서 식사 → Al Grill',lat:45.4348289,lon:12.3340247}
   ],
   '0821':[
-    {id:'dal_principe',name:'Ristorante & Steakhouse Dal Principe',area:"Cortina d'Ampezzo",style:'Steakhouse / grilled premium meat',priority:'★★★',badge:'BEST CORTINA STEAK',conditional:'Cinque Torri SKIP / Early arrival only',why:'Cortina 중심부 일정에 바로 결합 가능합니다. Cinque Torri를 스킵하거나 Cortina 도착이 충분히 빠를 때만 추천합니다.',lat:46.5380,lon:12.1372},
-    {id:'ristorante_5_torri',name:'Ristorante 5 Torri',area:"Cortina d'Ampezzo",style:'Italian / meat / grilled dishes',priority:'★★',badge:'EASY CORTINA OPTION',conditional:'Misurina evening first',why:'기존 Cortina 식사 후보이면서 고기류 선택이 가능합니다. 일정이 타이트할 때 현실적인 대안입니다.',lat:46.5387178,lon:12.1361355}
+    {id:'dal_principe',name:'Dal Principe',area:"Cortina d'Ampezzo",address:'Corso Italia 1, Parc Hotel Victoria',style:'Italian Steakhouse / Premium grilled meat',priority:'★★★',badge:'BEST CORTINA STEAK',conditional:'Cinque Torri SKIP / Early arrival only',why:'Cortina 중심 itinerary와 거의 바로 연결됩니다. 2026년 신규 steakhouse이며 premium meat grill 전문, 점심 12:00–15:00 운영입니다.',caution:'Cinque Torri를 스킵하거나 Cortina에 충분히 일찍 도착한 경우에만 우선 추천합니다.',lat:46.5380,lon:12.1372},
+    {id:'baita_fraina',name:'Baita Fraina',area:"Cortina d'Ampezzo",address:'Via Fraina 1',style:'Dolomites / Italian / Meat',priority:'★★',badge:'SCENIC MEAT OPTION',conditional:'Misurina evening first',why:'Cortina 지역에서 오래 운영된 고기/지역요리 후보입니다. 고급 restaurant 성격과 산악 분위기가 있지만 Dal Principe보다 약간 detour입니다.',caution:'Misurina evening itinerary를 침범하면 SKIP.',lat:46.5327081,lon:12.1426700}
   ],
   '0822':[
-    {id:'tubladel',name:'Restaurant Tubladel',area:'Ortisei',style:'South Tyrolean / meat / T-bone',priority:'★★★',badge:'TOP PICK',why:'숙소 도착 후 저녁 식사로 매우 적합하고 이미 주요 저녁 후보입니다.',logic:'Tubladel 우선',lat:46.5706335,lon:11.6789058},
-    {id:'da_checco',name:'Ustaria Da Checco',area:'Ortisei',style:'Italian / South Tyrolean / steak & meat',priority:'★★',badge:'BACKUP',why:'Tubladel 대기 또는 예약 실패 시 Ortisei 안에서 해결 가능한 대안입니다.',logic:'Tubladel 실패 시',lat:46.5737833,lon:11.6755835}
+    {id:'tubladel',name:'Ristorante Tubladel',area:'Ortisei',address:'Via Christian Trebinger 22',style:'South Tyrolean / Grill / Meat & Game',priority:'★★★★',badge:'🥩 BEST DOLOMITES MEAT',highlight:'🥩 BEST DOLOMITES',why:'Chalet Hotel Hartmann 도착 후 이용하기 좋습니다. Michelin Guide 등재, meat / game 중심, 최근 2026 리뷰에서 food/service 호평이 있고 예약 없이 입장한 사례도 있습니다. 무료 off-street parking 제공.',logic:'Quality / atmosphere → Tubladel',lat:46.5706335,lon:11.6789058},
+    {id:'mauriz_keller',name:'Mauriz Keller',area:'Ortisei Center',address:'Strada Rezia 32',style:'South Tyrolean / Italian / Steak',priority:'★★★',badge:'EASY ORTISEI OPTION',why:'Ortisei 중심가라 접근성이 좋습니다. 2026년 7월 최신 리뷰에서 Ribeye steak와 직원 응대 평가가 좋습니다. Tubladel보다 casual하고 중심가 접근이 쉽습니다.',logic:'Central / easy → Mauriz Keller',lat:46.5740,lon:11.6749}
   ],
   '0823':[
-    {id:'tubladel',name:'Restaurant Tubladel',area:'Ortisei',style:'South Tyrolean / T-bone / meat',priority:'★★★',badge:'RECOMMENDED STEAK DAY',highlight:'🥩 BEST DOLOMITES',why:'Seceda 하산 후 저녁 식사로 가장 좋은 스테이크 옵션입니다. 차량 장거리 이동이 없는 날이라 여유가 있습니다.',logic:'Dolomites 스테이크는 8/23 우선',lat:46.5706335,lon:11.6789058},
-    {id:'da_checco',name:'Ustaria Da Checco',area:'Ortisei',style:'Steak / meat / South Tyrolean',priority:'★★',badge:'BACKUP',why:'Tubladel backup입니다. 하산 후 Ortisei 안에서 무리 없이 이동 가능합니다.',lat:46.5737833,lon:11.6755835}
+    {id:'tubladel',name:'Ristorante Tubladel',area:'Ortisei',address:'Via Christian Trebinger 22',style:'South Tyrolean / Meat / Grill',priority:'★★★★',badge:'🥩 RECOMMENDED STEAK DAY',highlight:'🥩 BEST DOLOMITES',why:'Seceda 하산 → hotel rest → Tubladel dinner 동선이 매우 자연스럽습니다.',logic:'Recommended order #1 · Dolomites steak는 8/23 우선',lat:46.5706335,lon:11.6789058},
+    {id:'mauriz_keller',name:'Mauriz Keller',area:'Ortisei Center',address:'Strada Rezia 32',style:'Italian / South Tyrolean / Steak',priority:'★★★',badge:'BACKUP',why:'Ortisei 중심이고 최근 Ribeye 평가가 좋습니다. Tubladel 대기/예약 실패 시 현실적인 backup입니다.',logic:'Recommended order #2',lat:46.5740,lon:11.6749}
   ],
-  '0824':{note:'🥩 No external steak stop recommended today',text:'14:00부터 Santre 체크인 가능. 고가 숙소 이용시간 확보가 우선이라 외부 스테이크 우회는 추천하지 않습니다. Head to Santre and enjoy the hotel dining.'},
+  '0824':{note:'🥩 오늘은 외부 스테이크 식당을 추천하지 않습니다.',text:'luggage in car + Alpe di Siusi 오전 일정 + Santre check-in 14:00. Santre 이용시간 확보가 우선입니다. Head to Santre. 외부 식당 때문에 Santre 도착을 늦추지 마세요.'},
   '0825':[
-    {id:'brix_01',name:'Brix 0.1',area:'Bressanone',style:'Steakhouse / BBQ / grilled meat',priority:'★★★',badge:'ONLY IF VISITING BRESSANONE',conditional:'Bressanone outing only',why:'Bressanone 외출을 이미 결정한 경우 좋은 고기 식사 후보입니다. 스테이크를 위해 Santre에서 일부러 나가는 것은 추천하지 않습니다.',lat:46.7068350,lon:11.6543928},
-    {id:'grillage',name:'Grillage',area:'Bressanone / Brixen',style:'Grill / meat / steak',priority:'★★',badge:'ONLY IF VISITING BRESSANONE',conditional:'Bressanone outing only',why:'Bressanone 외출 선택 시 쓸 수 있는 grill/meat 대안입니다. 기본 추천은 여전히 Santre stay & dine입니다.',lat:46.7165455,lon:11.6554488}
+    {id:'decantei',name:'Decantei',area:'Bressanone Old Town',address:'Via Hartwig 5',style:'South Tyrolean / Grill / Meat',priority:'★★★',badge:'BRESSANONE OUTING ONLY',conditional:'Bressanone outing only',why:"Bressanone 구시가지 외출 시 itinerary와 잘 맞습니다. 2025 Travelers' Choice, 최근 리뷰에서 서비스 친절도와 beef quality 관련 긍정 평가가 있습니다. 지역 음식과 고기 요리를 같이 경험하기 좋습니다.",logic:'Default는 Stay & dine at Santre. 검증 기준 통과 후보 1곳.',lat:46.7151716,lon:11.6584631}
   ],
   '0826':[
-    {id:'mannarino_tenca',name:'Il Mannarino Tenca',area:'Central Milan',style:'Butcher restaurant / grilled meat / steak',priority:'★★',badge:'CASUAL MEAT OPTION',why:'Centrale에서 밀라노 시내로 이동하는 날 쓰기 좋은 캐주얼 고기 전문점입니다.',logic:'피곤함/편의성 우선',lat:45.4805268,lon:9.2018525},
-    {id:'nero_9',name:'Nero 9',area:'Brera',style:'Steakhouse / dry-aged beef / Fiorentina',priority:'★★★',badge:'BEST QUALITY / SMALL DETOUR',why:'스테이크 품질을 우선하면 더 강한 후보입니다. 단, 8/26 Duomo evening route에서는 약간의 이동이 필요합니다.',logic:'스테이크 자체가 목적일 때',lat:45.4757,lon:9.1868}
+    {id:'nero_9',name:'Nero 9',area:'Brera / Porta Garibaldi',address:'Via Anfiteatro 9, Milano',style:'Italian Steakhouse / Dry-aged beef / Fiorentina / T-bone',priority:'★★★★',badge:'BEST MILAN STEAK',conditional:'Duomo evening보다 steak 우선 시',why:'Milan steak 후보 중 검증 결과가 가장 강합니다. Tripadvisor 약 4.7, 최근 2026 리뷰에서 steak와 서비스 호평이 이어지고 Fiorentina-style steak 평가도 좋습니다.',logic:'Duomo evening보다 steak를 우선하고 싶은 경우.',lat:45.4742513,lon:9.1827882}
   ],
   '0827':[
-    {id:'nero_9',name:'Nero 9',area:'Brera',style:'Steakhouse / dry-aged beef / Fiorentina',priority:'★★★',badge:'BEST MILAN STEAK OPTION',highlight:'🥩 BEST MILAN',why:'이날 Brera가 일정에 포함되어 있어 전체 밀라노 스테이크 후보 중 가장 강합니다. 저녁 영업시간에 맞춰 다시 방문하는 방식입니다.',logic:'Best overall steak',lat:45.4757,lon:9.1868},
-    {id:'carbonaia',name:'Osteria La Carbonaia',area:'Milan',style:'Tuscan / Bistecca alla Fiorentina',priority:'★★★',badge:'FIORENTINA OPTION',highlight:'🥩 FIORENTINA PICK',why:'Bistecca alla Fiorentina 스타일을 원할 때 Nero 9와 다른 성격의 대안입니다.',logic:'Fiorentina specifically',lat:45.4621535,lon:9.1734155}
+    {id:'nero_9',name:'Nero 9',area:'Brera',address:'Via Anfiteatro 9, Milano',style:'Premium Meat / Dry-aged Beef / Fiorentina',priority:'★★★★',badge:'🥩 BEST MILAN PICK',highlight:'🥩 BEST MILAN / BEST FIORENTINA-STYLE',why:'8/27 Brera itinerary와 가장 잘 맞습니다. 최근 리뷰가 매우 강하고 Fiorentina-style steak와 직원 서비스 평가가 좋습니다.',logic:'Best overall → Nero 9',lat:45.4742513,lon:9.1827882},
+    {id:'carbonaia',name:'Osteria La Carbonaia',area:'San Vittore',address:'Via Giosuè Carducci 38',style:'Tuscan / Steakhouse / Fiorentina',priority:'★★',badge:'FIORENTINA-SPECIFIC OPTION',why:'Fiorentina를 명확하게 먹고 싶을 경우 대안입니다. Tuscan meat restaurant이며 Fiorentina / grilled meat 전문성이 있습니다.',caution:'Nero 9보다 itinerary detour가 있고 최근 서비스/음식 평가 편차가 있습니다. 작은 식당이라 예약 권장 의견이 있습니다.',logic:'Fiorentina specifically → La Carbonaia',lat:45.4621535,lon:9.1734155}
   ]
 };
 const placeContext={
@@ -279,14 +277,13 @@ const mapListExcludeNames=new Set(['Bai de Dones']);
 const displaySearchOverrides={
   'Al Timon':'Al Timon Cannaregio Venice Italy',
   'La Vacaria':'La Vacaria Dorsoduro Venice Italy',
-  'Ristorante & Steakhouse Dal Principe':'Dal Principe Parc Hotel Victoria Corso Italia 3 Cortina d Ampezzo Italy',
-  'Ristorante 5 Torri':'Ristorante Pizzeria 5 Torri Cortina d Ampezzo Italy',
-  'Restaurant Tubladel':'Restaurant Tubladel Ortisei Italy',
-  'Ustaria Da Checco':'Ustaria Da Checco Ortisei Italy',
-  'Brix 0.1':'Brix 0.1 Bressanone Italy',
-  'Grillage':'Grillage Bressanone Italy',
-  'Il Mannarino Tenca':'Il Mannarino Via Carlo Tenca Milan Italy',
+  'Dal Principe':'Dal Principe Parc Hotel Victoria Corso Italia 1 Cortina d Ampezzo Italy',
+  'Baita Fraina':'Baita Fraina Via Fraina 1 Cortina d Ampezzo Italy',
+  'Ristorante Tubladel':'Ristorante Tubladel Via Christian Trebinger 22 Ortisei Italy',
+  'Mauriz Keller':'Mauriz Keller Strada Rezia 32 Ortisei Italy',
+  'Decantei':'Decantei Via Hartwig 5 Bressanone Italy',
   'Nero 9':'Nero 9 Via Anfiteatro 9 Milano Italy',
+  'Al Grill':'Al Grill San Marco 1659B Venezia Italy',
   'Osteria La Carbonaia':'Osteria La Carbonaia Milan Italy',
   'Parkgarage Central + Despar':'Parkgarage Central Ortisei Italy',
   'Parking Fever':'Parking Fever Ortisei Italy',
@@ -467,7 +464,7 @@ function steakHTML(d){
   if(!Array.isArray(raw))return `<div class="panel"><div class="panel-body"><h3 class="section-title">🥩 Steak Options</h3><div class="steak-note"><b>${esc(raw.note)}</b><br>${esc(raw.text)}</div></div></div>`;
   const key='steak_'+d.id, saved=selectedSteakId(d);
   const choices=[{id:'none',name:'오늘은 스테이크 선택 안 함',why:'기존 식당·카페 후보를 그대로 사용합니다.'},...raw];
-  return `<div class="panel"><div class="panel-body"><h3 class="section-title">🥩 Steak Options</h3><div class="cards">${raw.map(x=>`<div class="place steak-card"><div class="kicker">${esc(x.highlight||'Steak option')}</div><h4>${esc(x.name)}</h4><div class="steak-meta"><span><b>Area</b> · ${esc(x.area)}</span><span><b>Style</b> · ${esc(x.style)}</span><span><b>Priority</b> · ${esc(x.priority)}</span>${x.badge?`<span class="badge">${esc(x.badge)}</span>`:''}${x.conditional?`<span class="badge">${esc(x.conditional)}</span>`:''}</div><p>${esc(x.why)}</p>${x.logic?`<p><b>선택 기준</b> · ${esc(x.logic)}</p>`:''}${mapButtons(x.name,x.lat,x.lon,placeContext[d.id])}</div>`).join('')}</div><div class="choice-group steak-choice">${choices.map(x=>`<label class="choice ${saved===x.id?'selected':''}"><input type="radio" name="${key}" value="${x.id}" ${saved===x.id?'checked':''}><span><b>${esc(x.name)}</b><small>${esc(x.why||'')}</small></span></label>`).join('')}</div></div></div>`;
+  return `<div class="panel"><div class="panel-body"><h3 class="section-title">🥩 Steak Options</h3>${raw.length===1?'<div class="steak-note"><b>검증 기준 통과 후보 1곳</b><br>2개를 채우기 위해 낮은 품질 후보를 추가하지 않았습니다.</div><div style="height:10px"></div>':''}<div class="cards">${raw.map(x=>`<div class="place steak-card"><div class="kicker">${esc(x.highlight||'Steak option')}</div><h4>${esc(x.name)}</h4><div class="steak-meta"><span><b>Area</b> · ${esc(x.area)}</span>${x.address?`<span><b>Address</b> · ${esc(x.address)}</span>`:''}<span><b>Style</b> · ${esc(x.style)}</span><span><b>Priority</b> · ${esc(x.priority)}</span>${x.badge?`<span class="badge">${esc(x.badge)}</span>`:''}${x.conditional?`<span class="badge">${esc(x.conditional)}</span>`:''}</div><p>${esc(x.why)}</p>${x.caution?`<p><b>Caution</b> · ${esc(x.caution)}</p>`:''}${x.logic?`<p><b>선택 기준</b> · ${esc(x.logic)}</p>`:''}${mapButtons(x.name,x.lat,x.lon,placeContext[d.id])}</div>`).join('')}</div><div class="choice-group steak-choice">${choices.map(x=>`<label class="choice ${saved===x.id?'selected':''}"><input type="radio" name="${key}" value="${x.id}" ${saved===x.id?'checked':''}><span><b>${esc(x.name)}</b><small>${esc(x.why||'')}</small></span></label>`).join('')}</div></div></div>`;
 }
 function selectedSteakEntries(d){const id=selectedSteakId(d);return steakList(d).filter(x=>x.id===id)}
 function placesHTML(items,title,ctx=''){if(!items?.length)return'';return `<div class="panel"><div class="panel-body"><h3 class="section-title">${esc(title)}</h3><div class="cards">${items.map(x=>`<div class="place"><div class="kicker">${esc(x[0])}</div><h4>${esc(x[1])}</h4><p>${esc(x[2])}</p>${mapButtons(x[1],undefined,undefined,ctx)}</div>`).join('')}</div></div></div>`}
