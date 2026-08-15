@@ -29,6 +29,11 @@ button:focus-visible,a:focus-visible,input:focus-visible{outline:3px solid rgba(
 .to-top:active{transform:translateY(1px) scale(.98)}
 @media(max-width:640px){.to-top{right:14px;bottom:calc(14px + env(safe-area-inset-bottom));width:46px;height:46px;font-size:23px}}
 
+
+.option-summary-wrap{display:grid;gap:10px;margin-top:14px}
+.option-summary{border:1px solid #f0d7a8;background:#fffaf0;border-radius:16px;padding:13px 14px;box-shadow:0 8px 20px rgba(120,84,24,.08)}
+.option-summary b{display:block;margin-bottom:5px;color:#7a4b00;font-size:14px}.option-summary p{margin:0;color:#4b5563;font-size:13px;line-height:1.55}.option-summary .place-line{margin-top:8px;color:#6b7280;font-size:12px;font-weight:700}
+
 </style>
 </head>
 <body>
@@ -92,6 +97,84 @@ const optionMap={
   paris28:{
     montmartre:{points:[['사크레쾨르',48.8867,2.3431]], note:'Montmartre 선택됨'},
     louvre:{points:[['루브르',48.8606,2.3376],['튈르리 정원',48.8635,2.3270]], note:'루브르 + 튈르리 정원 선택됨'}
+  }
+};
+const optionDetails={
+  route19:{
+    rest1:{title:'휴게소 1회 · 추천',text:'밀라노에서 베네치아까지 가장 현실적인 기본 루트. 관광 경유 없이 운전 피로를 줄이고 메스트레 체크인을 우선합니다.',places:'고속도로 휴게소 1회 + Hotel Plaza Mestre'},
+    rest2:{title:'휴게소 2회',text:'졸리거나 시차 피로가 강할 때 선택. 도착은 늦어지지만 안전 운전과 컨디션 회복이 우선입니다.',places:'고속도로 휴게소 2회'},
+    sirmione:{title:'Sirmione 옵션',text:'가르다 호수 남쪽의 예쁜 반도 마을. 사진은 좋지만 체크인과 베네치아 저녁 시간이 밀릴 수 있어 컨디션이 아주 좋을 때만 선택합니다.',places:'Sirmione · Garda Lake'}
+  },
+  evening19:{
+    early:{title:'~14:30 여유 있음',text:'체크인이 빠르게 끝나면 Cannaregio부터 리알토, 산마르코까지 넓게 보는 선택입니다. 첫날이라 무리하지 않는 선에서만 진행합니다.',places:'Cannaregio · Rialto · San Marco'},
+    mid:{title:'14:30–15:30 보통 도착',text:'리알토와 저녁 분위기 중심의 균형안. 첫 베네치아 인상은 충분히 살리고 피로는 줄입니다.',places:'Cannaregio · Rialto'},
+    late:{title:'15:30 이후 늦은 도착',text:'호텔 휴식 후 리알토 주변만 짧게 보는 안전 선택. 다음날 베네치아 풀데이를 위해 체력을 아낍니다.',places:'Hotel Plaza · Rialto'}
+  },
+  opt20:{
+    salute:{title:'Salute + Punta della Dogana',text:'도르소두로 끝자락까지 확장하는 산책 옵션. 베네치아 수변 풍경이 좋지만 걷는 양이 늘어납니다.',places:'Santa Maria della Salute · Punta della Dogana'},
+    gondola:{title:'곤돌라 30분',text:'신혼여행 분위기용 옵션. 가격 대비 효율보다 경험값이 목적이라 날씨와 대기 줄이 괜찮을 때만 선택합니다.',places:'San Marco/Rialto 주변 곤돌라 승선지'},
+    campanile:{title:'Campanile',text:'산마르코 광장 전망대. 날씨가 맑을 때만 의미가 크고, 대기 시간이 길면 과감히 스킵합니다.',places:'St Mark’s Campanile'},
+    none:{title:'추가 없음 · 추천',text:'산마르코 핵심 관광과 도르소두로 산책만 여유 있게 가져가는 선택. 베네치아 하루 일정의 피로도를 가장 낮춥니다.',places:'San Marco → Dorsoduro'}
+  },
+  torri21:{
+    go:{title:'Cinque Torri GO',text:'리프트를 타고 친퀘토리 바위군을 짧게 보는 선택. 13:30 이전 도착 예상일 때만 가치가 큽니다.',places:'Bai de Dones · Cinque Torri'},
+    short:{title:'Cinque Torri Short',text:'시간이 애매할 때 전망 위주로만 보는 타협안. 깊게 걷지 않고 사진 포인트만 확보합니다.',places:'Bai de Dones · Cinque Torri 전망'},
+    skip:{title:'Cinque Torri SKIP',text:'늦거나 피곤하면 미주리나 저녁과 숙소 휴식을 지키는 선택. 이 날은 무리하지 않는 게 더 안전합니다.',places:'Cortina · Passo Tre Croci · Misurina'}
+  },
+  braies22:{
+    quick:{title:'Braies QUICK',text:'호수 핵심 풍경만 보고 빠지는 선택. 뒤 일정과 운전 시간을 보호합니다.',places:'Lago di Braies P4 주변'},
+    standard:{title:'Braies STANDARD · 추천',text:'1.5–2시간 정도로 호수 풍경을 충분히 보고 이동하는 균형안입니다.',places:'Lago di Braies 산책'},
+    full:{title:'Braies FULL',text:'호수 체류를 길게 잡는 선택. 사진은 좋지만 오르티세이 도착과 저녁 여유가 줄어듭니다.',places:'Lago di Braies 긴 산책'}
+  },
+  john22:{
+    go:{title:'St. John Viewpoint GO',text:'Val di Funes의 엽서 같은 교회 전망. 날씨가 맑고 체력이 괜찮을 때만 들르는 옵션입니다.',places:'St. John Church Viewpoint · Ranui 주차장'},
+    skip:{title:'St. John SKIP',text:'구름이 많거나 피곤하면 오르티세이로 바로 이동. 가르데나 카드 구매와 체크인을 우선합니다.',places:'Ortisei 직행'}
+  },
+  seceda23:{
+    easy:{title:'Seceda EASY',text:'능선 핵심 풍경만 확보하고 일찍 내려오는 선택. 날씨가 불안하거나 체력이 애매할 때 적합합니다.',places:'Seceda Ridge'},
+    standard:{title:'Seceda STANDARD · 추천',text:'능선과 Pieralongia까지 보는 균형 루트. 풍경 만족도와 체력 부담의 균형이 좋습니다.',places:'Seceda Ridge · Pieralongia'},
+    full:{title:'Seceda FULL',text:'산 위 체류를 길게 가져가는 선택. 날씨가 맑고 컨디션이 좋을 때만 추천합니다.',places:'Seceda · Pieralongia · 산장'}
+  },
+  siusi24:{
+    end:{title:'충분히 봄 · 추천',text:'Alpe di Siusi의 핵심 풍경만 보고 Santre 체크인 여유를 지키는 선택입니다.',places:'Mont Sëuc · Kaito Viewpoint'},
+    walk:{title:'조금 더 걷기',text:'Kaito 이후 체력이 남으면 주변 초원길을 조금 더 보는 옵션입니다.',places:'Alpe di Siusi 초원길'},
+    sole:{title:'Sole 리프트',text:'리프트를 추가로 활용해 더 넓은 풍경을 보는 선택. 시간과 운행 상황 확인이 필요합니다.',places:'Sole lift area'},
+    full:{title:'Alpe di Siusi FULL',text:'초원 체류를 길게 가져가는 선택. 대신 Santre 체크인 후 쉬는 시간이 줄어듭니다.',places:'Alpe di Siusi 확장 루트'}
+  },
+  santre25:{
+    stay:{title:'Santre Stay · 추천',text:'호텔 자체를 즐기는 날. 수영장·스파·전망 휴식에 집중해서 여행 중반 체력을 회복합니다.',places:'Santre'},
+    brixen:{title:'Bressanone 2–3h',text:'산트레에서 가볍게 다녀올 수 있는 구시가지 외출. 성당, 카페, 짧은 산책 정도로 충분합니다.',places:'Brixen Cathedral · Bressanone Old Town'},
+    plose:{title:'Plose AM',text:'정말 걷고 싶을 때만 오전에 짧게. 쉬는 날 성격이 깨지지 않게 무리하지 않습니다.',places:'Plose'}
+  },
+  stop26:{
+    direct:{title:'바로 밀라노 · 추천',text:'장거리 이동일 기본 선택. 밀라노 체크인과 렌터카 반납 시간을 안정적으로 지킵니다.',places:'Santre → Milan'},
+    trento:{title:'Trento 경유',text:'가장 부담이 적은 도시 경유. 커피나 짧은 점심 정도로만 잡는 게 좋습니다.',places:'Trento'},
+    riva:{title:'Riva del Garda 경유',text:'가르다 호수 분위기를 보는 옵션. 풍경은 좋지만 이동 시간이 늘어납니다.',places:'Riva del Garda'},
+    verona:{title:'Verona 경유',text:'도시 만족도는 높지만 이동일 피로와 주차 부담이 있습니다. 컨디션 좋을 때만 선택합니다.',places:'Verona'}
+  },
+  night26:{
+    duomo:{title:'Duomo/Galleria 산책 · 추천',text:'첫 밀라노 밤은 가볍게 두오모와 갤러리아 분위기만 보는 선택입니다.',places:'Duomo · Galleria'},
+    roof:{title:'Duomo Rooftop',text:'날씨가 좋고 시간이 남으면 루프탑 야경을 보는 옵션. 피곤하면 27일로 넘깁니다.',places:'Duomo Rooftop'},
+    easy:{title:'Centrale 근처 저녁',text:'체력이 떨어졌을 때 가장 안전한 선택. 숙소 주변에서 먹고 쉬는 루트입니다.',places:'Milano Centrale 주변'}
+  },
+  duomo27:{
+    inside:{title:'Duomo 내부 관람',text:'밀라노 대표 성당 내부를 보는 선택. 대기와 예약 상황에 따라 유연하게 판단합니다.',places:'Duomo di Milano'},
+    skip:{title:'Duomo 내부 SKIP',text:'브레라, 쇼핑, 갤러리아에 시간을 더 쓰는 선택. 막판 피로 관리에 좋습니다.',places:'Brera · Galleria'}
+  },
+  night27:{
+    navigli:{title:'Navigli · 추천',text:'운하 주변 저녁 산책과 식사용 선택. 26일 루프탑을 이미 했다면 가장 좋은 마무리입니다.',places:'Navigli'},
+    roof:{title:'Duomo Rooftop',text:'26일에 못 했다면 마지막 저녁 루프탑을 우선합니다. 날씨가 핵심입니다.',places:'Duomo Rooftop'},
+    rest:{title:'호텔 휴식',text:'여행 막판 체력 보호 선택. 다음날 장거리 귀국 동선을 생각하면 충분히 좋은 선택입니다.',places:'NYX Hotel Milan'}
+  },
+  transfer28:{
+    private:{title:'공항 픽업 왕복 차량',text:'파리 레이오버에서 가장 안정적인 이동 방식. 같은 차량 대기와 T1 샌딩 가능 여부가 핵심입니다.',places:'CDG ↔ Paris'},
+    uber:{title:'Uber 왕복',text:'유연하지만 복귀 시간 예측이 흔들릴 수 있습니다. 16:10 컷오프를 절대 넘기면 안 됩니다.',places:'CDG ↔ Paris'},
+    cancel:{title:'시내 취소',text:'항공 지연, 수하물, 피로가 있으면 공항 대기가 정답입니다. 귀국편 안정성이 최우선입니다.',places:'CDG Airport'}
+  },
+  paris28:{
+    montmartre:{title:'Montmartre',text:'사크레쾨르와 골목 분위기를 보는 파리 감성 루트. 언덕과 이동 시간이 부담될 수 있습니다.',places:'Sacré-Cœur · Montmartre'},
+    louvre:{title:'Louvre + Tuileries',text:'동선이 비교적 단순한 파리 핵심 산책 루트. 사진과 휴식 균형이 좋습니다.',places:'Louvre · Tuileries'},
+    stay:{title:'CDG Stay',text:'무리하지 않고 공항에 머무는 선택. 지연이나 피로가 있으면 가장 안전합니다.',places:'CDG'}
   }
 };
 const placeContext={
@@ -253,17 +336,29 @@ function amUrl(name,lat,lon){if(typeof lat==='number'&&typeof lon==='number')ret
 function mapButtons(name,lat,lon,ctx=''){const parts=splitPlaceNames(name).map(n=>searchName(n,ctx)).filter(Boolean);if(!parts.length)return '';return `<div class="place-actions">${parts.map((q,i)=>`<a class="map-link google" target="_blank" rel="noopener" href="${gmUrl(q,lat,lon)}">${parts.length>1?'Google '+(i+1):'Google Maps'}</a><a class="map-link apple" target="_blank" rel="noopener" href="${amUrl(q,lat,lon)}">${parts.length>1?'Apple '+(i+1):'Apple Maps'}</a>`).join('')}</div>`}
 
 function emojiFor(kind,name=''){
-  const s=(kind+' '+name).toLowerCase();
+  const raw=(kind+' '+name);
+  const s=raw.toLowerCase();
   if(s.includes('coffee')||s.includes('café')||s.includes('cafe')||s.includes('카페'))return '☕';
-  if(s.includes('food')||s.includes('restaurant')||s.includes('dinner')||s.includes('lunch')||s.includes('meal'))return '🍽️';
-  if(s.includes('gelato')||s.includes('디저트'))return '🍦';
-  if(s.includes('식당'))return '🍽️';
-  if(s.includes('parking')||s.includes('주차'))return '🅿️';
-  if(s.includes('airport')||s.includes('mxp')||s.includes('cdg')||s.includes('icn'))return '✈️';
-  if(s.includes('hotel')||s.includes('moxy')||s.includes('nyx')||s.includes('santre')||s.includes('hartmann'))return '🏨';
-  if(s.includes('station')||s.includes('centrale')||s.includes('santa lucia'))return '🚆';
-  if(s.includes('gondola')||s.includes('seceda')||s.includes('mont'))return '🚡';
-  if(s.includes('lake')||s.includes('lago')||s.includes('viewpoint'))return '📸';
+  if(s.includes('gelato')||s.includes('젤라또')||s.includes('디저트'))return '🍦';
+  if(s.includes('cicchetti')||s.includes('치케티')||s.includes('bar ')||s.includes(' bar'))return '🍷';
+  if(s.includes('food')||s.includes('restaurant')||s.includes('ristorante')||s.includes('osteria')||s.includes('trattoria')||s.includes('dinner')||s.includes('lunch')||s.includes('meal')||s.includes('식당'))return '🍽️';
+  if(s.includes('parking')||s.includes('parkgarage')||s.includes('주차'))return '🅿️';
+  if(s.includes('airport')||s.includes('terminal')||s.includes('mxp')||s.includes('cdg')||s.includes('icn')||s.includes('공항'))return '✈️';
+  if(s.includes('hotel')||s.includes('moxy')||s.includes('nyx')||s.includes('santre')||s.includes('hartmann')||s.includes('숙소'))return '🏨';
+  if(s.includes('valley station')||s.includes('seceda station')||s.includes('secëda station'))return '🚡';
+  if(s.includes('malga')||s.includes('baita')||s.includes('hütte')||s.includes('hutte')||s.includes('pieralongia')||s.includes('산장'))return '🛖';
+  if(s.includes('station')||s.includes('centrale')||s.includes('santa lucia')||s.includes('중앙역')||s.includes('산타루치아역'))return '🚆';
+  if(s.includes('gondola')||s.includes('seceda')||s.includes('secëda')||s.includes('mont sëuc')||s.includes('alpe di siusi')||s.includes('곤돌라')||s.includes('세체다')||s.includes('몬트 세우치'))return '🚡';
+  if(s.includes('basilica')||s.includes('cathedral')||s.includes('duomo')||s.includes('sacré')||s.includes('sacre')||s.includes('성당')||s.includes('대성당')||s.includes('두오모'))return '⛪';
+  if(s.includes('palace')||s.includes('louvre')||s.includes('museum')||s.includes('piazza')||s.includes('square')||s.includes('광장')||s.includes('궁전')||s.includes('루브르'))return '🏛️';
+  if(s.includes('theater')||s.includes('teatro')||s.includes('scala')||s.includes('스칼라'))return '🎭';
+  if(s.includes('galleria')||s.includes('갤러리아'))return '✨';
+  if(s.includes('brera')||s.includes('브레라'))return '🎨';
+  if(s.includes('montenapoleone')||s.includes('shopping')||s.includes('쇼핑'))return '🛍️';
+  if(s.includes('bridge')||s.includes('rialto')||s.includes('accademia')||s.includes('다리'))return '🌉';
+  if(s.includes('lake')||s.includes('lago')||s.includes('braies')||s.includes('misurina')||s.includes('호수'))return '🏞️';
+  if(s.includes('viewpoint')||s.includes('ridge')||s.includes('passo')||s.includes('giau')||s.includes('kaito')||s.includes('zattere')||s.includes('tuileries')||s.includes('전망')||s.includes('고개')||s.includes('능선')||s.includes('정원'))return '📸';
+  if(s.includes('cortina')||s.includes('ortisei')||s.includes('trento')||s.includes('verona')||s.includes('riva del garda')||s.includes('sirmione')||s.includes('코르티나')||s.includes('오르티세이'))return '🏘️';
   return '📍';
 }
 function selectedOptionEntries(d){
@@ -300,10 +395,21 @@ function renderNav(activeId){dayNav.innerHTML=trip.map(d=>`<button type="button"
 function tagHTML(tags=[]){return `<div class="pill-row">${tags.map(t=>`<span class="pill ${t[2]||''}">${esc(t[0])} ${esc(t[1])}</span>`).join('')}</div>`}
 function constraintsHTML(id){const rows=constraints[id]||[];return rows.length?`<div class="constraint-wrap">${rows.map((x,i)=>`<div class="constraint-card ${id==='0828'||(id==='0821'&&i===0)?'critical':''}"><div class="constraint-icon">${x[0]}</div><div><b>${esc(x[1])}</b><span>${esc(x[2])}</span></div></div>`).join('')}</div>`:''}
 function timelineHTML(items=[]){return `<div class="timeline">${items.map(x=>`<div class="stop"><div class="stop-icon">${x[0]}</div><div class="stop-content"><b>${esc(x[1])}</b><small>${esc(x[2])}</small></div></div>`).join('')}</div>`}
+function optionDetailsHTML(d){
+  if(!d.choices)return '';
+  const cards=[];
+  Object.keys(d.choices).forEach(key=>{
+    const val=store.get('choice_'+key);
+    const info=optionDetails[key]?.[val];
+    if(info)cards.push(info);
+  });
+  if(!cards.length)return '';
+  return `<div class="option-summary-wrap">${cards.map(info=>`<div class="option-summary"><b>${esc(info.title)}</b><p>${esc(info.text)}</p>${info.places?`<div class="place-line">📍 ${esc(info.places)}</div>`:''}</div>`).join('')}</div>`;
+}
 function choicesHTML(d){if(!d.choices)return'';return Object.entries(d.choices).map(([key,g])=>{const saved=store.get('choice_'+key);return `<div style="margin-bottom:16px"><h3 class="section-title">${esc(g.label)}</h3><div class="choice-group">${g.options.map(o=>`<label class="choice ${saved===o[0]?'selected':''}"><input type="radio" name="${key}" value="${o[0]}" ${saved===o[0]?'checked':''}><span><b>${esc(o[1])}</b><small>${esc(o[2])}</small></span></label>`).join('')}</div></div>`}).join('')}
 function placesHTML(items,title,ctx=''){if(!items?.length)return'';return `<div class="panel"><div class="panel-body"><h3 class="section-title">${esc(title)}</h3><div class="cards">${items.map(x=>`<div class="place"><div class="kicker">${esc(x[0])}</div><h4>${esc(x[1])}</h4><p>${esc(x[2])}</p>${mapButtons(x[1],undefined,undefined,ctx)}</div>`).join('')}</div></div></div>`}
 function mapPlacesHTML(d){const rows=mapEntryRows(d);if(!rows.length)return'';const notes=[...new Set(rows.filter(r=>r.kind==='option'&&r.optionNote).map(r=>r.optionNote))];return `${notes.map(n=>`<div class="option-note">✨ ${esc(n)}</div>`).join('')}<div class="map-place-list">${rows.map(r=>`<div class="map-place-row"><span>${esc(r.label)}</span><div class="map-actions"><a class="map-link google" target="_blank" rel="noopener" href="${gmUrl(r.name,r.lat,r.lon)}">Google</a><a class="map-link apple" target="_blank" rel="noopener" href="${amUrl(r.name,r.lat,r.lon)}">Apple</a></div></div>`).join('')}</div>`}
-function renderContent(){content.innerHTML=trip.map(d=>`<section class="day-card" id="day-${d.id}"><div class="top-grid"><div class="panel"><div class="panel-body"><div class="day-title"><div><div class="eyebrow" style="color:#6a665f">${esc(d.date)}${isDeviceToday(d.id)?'<span class="today-badge">오늘</span>':''}</div><h2>${esc(d.title)}</h2><p>${esc(d.subtitle)}</p></div></div>${tagHTML(d.tags)}${constraintsHTML(d.id)}<div style="height:16px"></div><h3 class="section-title">오늘의 흐름</h3>${timelineHTML(d.timeline)}<label class="done-toggle"><input type="checkbox" class="done-check" data-id="${d.id}"> 오늘 일정 완료</label></div></div><div class="panel"><div class="panel-body" style="padding-bottom:12px"><h3 class="section-title">지도</h3><div class="footer-note">숫자 핀은 기본 동선, ✨는 선택한 옵션, 음식·카페 이모지는 후보입니다. 지도 타일이 안 뜨면 Google Maps 버튼을 사용하세요.</div>${mapPlacesHTML(d)}</div><div class="map-shell"><div class="map" id="map-${d.id}"></div><div class="map-fallback" id="map-fallback-${d.id}"><div class="map-fallback-inner"><b>지도를 불러오지 못했어요.</b><p>인터넷 연결 또는 지도 타일 서버 상태를 확인하세요. 위 장소 목록의 Google Maps / Apple Maps 버튼은 그대로 사용할 수 있습니다.</p></div></div></div></div></div>${d.choices?`<div class="panel"><div class="panel-body"><h3 class="section-title">현장 선택</h3>${choicesHTML(d)}</div></div>`:''}<div class="split">${placesHTML(d.food,'식당 · 카페',placeContext[d.id])}${placesHTML(d.parking,'주차 · 보급',placeContext[d.id])}</div><div class="panel"><div class="panel-body"><h3 class="section-title">메모</h3><div class="alert ${d.id==='0828'?'danger':''}">${esc(d.note||'')}</div></div></div></section>`).join('');content.querySelectorAll('input[type=radio]').forEach(r=>r.onchange=e=>{store.set('choice_'+e.target.name,e.target.value);document.querySelectorAll(`input[name="${e.target.name}"]`).forEach(x=>x.closest('.choice').classList.toggle('selected',x.checked));refreshActiveMap()});content.querySelectorAll('.done-check').forEach(c=>{c.checked=store.get('done_'+c.dataset.id)==='1';c.onchange=()=>store.set('done_'+c.dataset.id,c.checked?'1':'0')})}
+function renderContent(){content.innerHTML=trip.map(d=>`<section class="day-card" id="day-${d.id}"><div class="top-grid"><div class="panel"><div class="panel-body"><div class="day-title"><div><div class="eyebrow" style="color:#6a665f">${esc(d.date)}${isDeviceToday(d.id)?'<span class="today-badge">오늘</span>':''}</div><h2>${esc(d.title)}</h2><p>${esc(d.subtitle)}</p></div></div>${tagHTML(d.tags)}${constraintsHTML(d.id)}<div style="height:16px"></div><h3 class="section-title">오늘의 흐름</h3>${timelineHTML(d.timeline)}<label class="done-toggle"><input type="checkbox" class="done-check" data-id="${d.id}"> 오늘 일정 완료</label></div></div><div class="panel"><div class="panel-body" style="padding-bottom:12px"><h3 class="section-title">지도</h3><div class="footer-note">숫자 핀은 기본 동선, ✨는 선택한 옵션, 음식·카페 이모지는 후보입니다. 지도 타일이 안 뜨면 Google Maps 버튼을 사용하세요.</div>${mapPlacesHTML(d)}</div><div class="map-shell"><div class="map" id="map-${d.id}"></div><div class="map-fallback" id="map-fallback-${d.id}"><div class="map-fallback-inner"><b>지도를 불러오지 못했어요.</b><p>인터넷 연결 또는 지도 타일 서버 상태를 확인하세요. 위 장소 목록의 Google Maps / Apple Maps 버튼은 그대로 사용할 수 있습니다.</p></div></div></div></div></div>${d.choices?`<div class="panel"><div class="panel-body"><h3 class="section-title">현장 선택</h3>${choicesHTML(d)}<div class="option-details-slot">${optionDetailsHTML(d)}</div></div></div>`:''}<div class="split">${placesHTML(d.food,'식당 · 카페',placeContext[d.id])}${placesHTML(d.parking,'주차 · 보급',placeContext[d.id])}</div><div class="panel"><div class="panel-body"><h3 class="section-title">메모</h3><div class="alert ${d.id==='0828'?'danger':''}">${esc(d.note||'')}</div></div></div></section>`).join('');content.querySelectorAll('input[type=radio]').forEach(r=>r.onchange=e=>{store.set('choice_'+e.target.name,e.target.value);document.querySelectorAll(`input[name="${e.target.name}"]`).forEach(x=>x.closest('.choice').classList.toggle('selected',x.checked));refreshActiveMap()});content.querySelectorAll('.done-check').forEach(c=>{c.checked=store.get('done_'+c.dataset.id)==='1';c.onchange=()=>store.set('done_'+c.dataset.id,c.checked?'1':'0')})}
 const maps={};
 function showMapFallback(id){const el=document.getElementById('map-fallback-'+id);if(el)el.classList.add('show')}
 function initMap(d){if(maps[d.id]){setTimeout(()=>maps[d.id].invalidateSize(),100);return}if(!d.points?.length){showMapFallback(d.id);return}if(!window.L){showMapFallback(d.id);return}try{const m=L.map('map-'+d.id,{scrollWheelZoom:false,tap:true});let tileLoaded=false,tileErrors=0;const tiles=L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{maxZoom:19,attribution:'&copy; OpenStreetMap'}).addTo(m);tiles.on('tileload',()=>{tileLoaded=true;const f=document.getElementById('map-fallback-'+d.id);if(f)f.classList.remove('show')});tiles.on('tileerror',()=>{tileErrors++;if(tileErrors>=3&&!tileLoaded)showMapFallback(d.id)});const bounds=[];d.points.forEach((p,i)=>{const q=searchName(p[0],placeContext[d.id]);const icon=L.divIcon({className:'emoji-marker',html:`<span>${emojiFor('point',p[0])}</span><b>${i+1}</b>`,iconSize:[34,34],iconAnchor:[17,17]});L.marker([p[1],p[2]],{icon}).addTo(m).bindPopup(`<b>${esc(p[0])}</b><br><div style="margin-top:7px"><a target="_blank" rel="noopener" href="${gmUrl(q,p[1],p[2])}">Google Maps</a> · <a target="_blank" rel="noopener" href="${amUrl(q,p[1],p[2])}">Apple Maps</a></div>`);bounds.push([p[1],p[2]])});selectedOptionEntries(d).forEach(opt=>(opt.points||[]).forEach(p=>{const q=searchName(p[0],placeContext[d.id]);const icon=L.divIcon({className:'emoji-marker option',html:`<span>✨</span><b>옵</b>`,iconSize:[34,34],iconAnchor:[17,17]});L.marker([p[1],p[2]],{icon}).addTo(m).bindPopup(`<b>옵션 · ${esc(p[0])}</b><br>${esc(opt.note||'선택한 옵션')}<br><div style="margin-top:7px"><a target="_blank" rel="noopener" href="${gmUrl(q,p[1],p[2])}">Google Maps</a> · <a target="_blank" rel="noopener" href="${amUrl(q,p[1],p[2])}">Apple Maps</a></div>`);bounds.push([p[1],p[2]])}));m.fitBounds(bounds,{padding:[24,24],maxZoom:12});maps[d.id]=m;setTimeout(()=>{if(!tileLoaded)showMapFallback(d.id)},7000)}catch(e){showMapFallback(d.id)}}
@@ -319,6 +425,7 @@ function refreshActiveMap(){
     notes.forEach(n=>n.remove());
     if(list)list.outerHTML=mapPlacesHTML(d);
   }
+  const slot=document.querySelector(`#day-${d.id} .option-details-slot`); if(slot)slot.innerHTML=optionDetailsHTML(d);
   if(maps[d.id]){maps[d.id].remove();delete maps[d.id];}
   const el=document.getElementById('map-'+d.id); if(el)el.innerHTML='';
   const fb=document.getElementById('map-fallback-'+d.id); if(fb)fb.classList.remove('show');
