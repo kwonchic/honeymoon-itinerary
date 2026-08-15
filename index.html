@@ -17,6 +17,18 @@ button:focus-visible,a:focus-visible,input:focus-visible{outline:3px solid rgba(
 @media(max-width:900px){.shell{padding:12px;padding-left:max(12px,env(safe-area-inset-left));padding-right:max(12px,env(safe-area-inset-right));padding-bottom:max(12px,env(safe-area-inset-bottom))}.hero{grid-template-columns:1fr;padding:22px 18px;border-radius:22px}.hero-stats{grid-template-columns:repeat(2,minmax(0,1fr))}.layout{grid-template-columns:1fr;gap:12px;margin-top:12px}.sidebar{position:relative;top:0;max-height:none;overflow:hidden;padding:10px}.sidebar h3{display:none}.day-nav{display:flex;gap:7px;overflow-x:auto;overflow-y:hidden;max-width:100%;padding-bottom:4px;scrollbar-width:none;-webkit-overflow-scrolling:touch}.day-nav::-webkit-scrollbar{display:none}.day-btn{flex:0 0 136px;min-width:0;padding:9px 10px}.toolbar{display:none}.top-grid,.split{grid-template-columns:1fr}.cards{grid-template-columns:1fr}.map{height:300px}.panel{border-radius:18px;margin-bottom:12px}.panel-body{padding:16px}.day-title h2{font-size:25px}.day-switcher{top:max(6px,env(safe-area-inset-top));margin-bottom:10px}.map-place-row{align-items:flex-start;flex-direction:column}.map-actions{width:100%}.map-link{flex:1}.constraint-wrap{margin-top:13px}}
 @media(max-width:520px){.shell{padding-top:max(10px,env(safe-area-inset-top))}.hero{padding:18px 15px}.hero h1{font-size:29px}.hero p{font-size:13px}.hero-stats{gap:7px}.stat{padding:10px}.stat b{font-size:18px}.stat span{font-size:10px}.map{height:255px}.day-switcher{grid-template-columns:42px minmax(0,1fr) 58px 42px}.stop{grid-template-columns:40px minmax(0,1fr);gap:10px}.stop-icon{width:40px;height:40px}.stop:before{left:19px}.choice{padding:12px}.pill-row{gap:5px}.pill{font-size:11px;padding:6px 8px}.map-link{font-size:11px;padding:8px}.place h4{font-size:15px}}
 @media print{*{box-shadow:none!important}html,body{background:#fff!important;overflow:visible!important}.shell{max-width:none;padding:0}.hero{background:#fff!important;color:#000!important;border:1px solid #bbb;border-radius:0;padding:14px;margin-bottom:12px}.hero p,.hero .eyebrow{color:#333!important;opacity:1}.hero-stats{display:none}.layout{display:block;margin:0}.sidebar,.day-switcher,.toolbar,.map-shell,.map-place-list,.map-link,.place-actions,.done-toggle,.quick-actions{display:none!important}.day-card{display:block!important;break-before:page;page-break-before:always}.day-card:first-of-type{break-before:auto;page-break-before:auto}.top-grid,.split,.cards{display:block}.panel{border:1px solid #ccc;border-radius:0;margin:0 0 10px;overflow:visible}.panel-body{padding:10px}.choice{break-inside:avoid}.constraint-card,.place,.stop{break-inside:avoid}.place{margin-bottom:8px}.pill{border:1px solid #ccc;background:#fff!important;color:#000!important}.alert,.constraint-card{background:#fff!important;color:#000!important;border-color:#999!important}.footer-note{display:none}@page{size:A4;margin:12mm}}
+
+.to-top{
+  position:fixed;right:18px;bottom:calc(18px + env(safe-area-inset-bottom));z-index:9999;
+  width:48px;height:48px;border-radius:999px;border:1px solid rgba(255,255,255,.22);
+  background:linear-gradient(135deg,#f59e0b,#fb7185);color:#fff;font-size:24px;font-weight:900;
+  box-shadow:0 12px 28px rgba(15,23,42,.32);cursor:pointer;display:grid;place-items:center;
+  opacity:0;transform:translateY(12px);pointer-events:none;transition:opacity .18s ease,transform .18s ease;
+}
+.to-top.show{opacity:1;transform:translateY(0);pointer-events:auto}
+.to-top:active{transform:translateY(1px) scale(.98)}
+@media(max-width:640px){.to-top{right:14px;bottom:calc(14px + env(safe-area-inset-bottom));width:46px;height:46px;font-size:23px}}
+
 </style>
 </head>
 <body>
@@ -25,6 +37,7 @@ button:focus-visible,a:focus-visible,input:focus-visible{outline:3px solid rgba(
 <div class="layout"><aside class="sidebar"><h3>날짜 선택</h3><div class="day-nav" id="dayNav"></div><div class="toolbar"><button type="button" class="mini-btn" id="todayBtn">오늘</button><button type="button" class="mini-btn" onclick="resetChoices()">선택 초기화</button><button type="button" class="mini-btn" onclick="window.print()">PDF 저장</button></div></aside><main class="content"><div class="day-switcher" id="daySwitcher"><button type="button" id="prevDay" aria-label="이전 날짜">‹</button><div class="switcher-title"><b id="switcherLabel">여행 일정</b><span id="switcherSub">이전/다음 날짜로 이동</span></div><button type="button" id="pdfBtn" aria-label="PDF로 저장">PDF</button><button type="button" id="nextDay" aria-label="다음 날짜">›</button></div><div id="content"></div></main></div>
 </div>
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<button class="to-top" id="toTop" type="button" aria-label="상단으로 이동">↑</button>
 <script>
 const trip = [
 {id:'0818',date:'8/18 화',title:'밀라노 도착 · MILAN Arrival',subtitle:'도착해서 자는 날 — 일정 없음',tags:[['✈️','MXP 도착','flight'],['🏨','말펜사 공항 숙소 · Moxy','hotel']],points:[['MXP T2',45.6301,8.7281],['Moxy Milan Malpensa',45.6293,8.7265]],timeline:[['✈️','MXP 도착','입국·수하물 수령 후 공항 근처 숙소 이동'],['🏨','Moxy 체크인','다음 날 운전을 위해 바로 휴식']],note:'8/19부터 본 일정. 18일에는 관광을 넣지 않음.'},
@@ -275,6 +288,14 @@ function dateForId(id){return new Date(2026,Number(id.slice(0,2))-1,Number(id.sl
 function dayKey(dt){return `${String(dt.getMonth()+1).padStart(2,'0')}${String(dt.getDate()).padStart(2,'0')}`}
 function todayTripId(){const now=new Date();const key=dayKey(now);if(now.getFullYear()===2026&&trip.some(d=>d.id===key))return key;const first=dateForId(trip[0].id),last=dateForId(trip[trip.length-1].id);if(now<first)return trip[0].id;if(now>last)return trip[trip.length-1].id;let best=trip[0],bestDiff=Infinity;trip.forEach(d=>{const diff=Math.abs(dateForId(d.id)-now);if(diff<bestDiff){best=d;bestDiff=diff}});return best.id}
 function isDeviceToday(id){const n=new Date();return n.getFullYear()===2026&&dayKey(n)===id}
+
+function setupToTop(){
+  const btn=document.getElementById('toTop'); if(!btn)return;
+  const onScroll=()=>btn.classList.toggle('show',window.scrollY>520);
+  btn.onclick=()=>window.scrollTo({top:0,behavior:'smooth'});
+  window.addEventListener('scroll',onScroll,{passive:true});
+  onScroll();
+}
 function renderNav(activeId){dayNav.innerHTML=trip.map(d=>`<button type="button" class="day-btn ${d.id===activeId?'active':''}" data-id="${d.id}" aria-current="${d.id===activeId?'page':'false'}"><div class="date">${esc(d.date)}${isDeviceToday(d.id)?'<span class="today-badge">TODAY</span>':''}</div><div class="name">${esc(d.title)}</div></button>`).join('');dayNav.querySelectorAll('.day-btn').forEach(b=>b.onclick=()=>activateDay(b.dataset.id))}
 function tagHTML(tags=[]){return `<div class="pill-row">${tags.map(t=>`<span class="pill ${t[2]||''}">${esc(t[0])} ${esc(t[1])}</span>`).join('')}</div>`}
 function constraintsHTML(id){const rows=constraints[id]||[];return rows.length?`<div class="constraint-wrap">${rows.map((x,i)=>`<div class="constraint-card ${id==='0828'||(id==='0821'&&i===0)?'critical':''}"><div class="constraint-icon">${x[0]}</div><div><b>${esc(x[1])}</b><span>${esc(x[2])}</span></div></div>`).join('')}</div>`:''}
@@ -306,7 +327,7 @@ function refreshActiveMap(){
 function activateDay(id,scroll=true){activeId=id;document.querySelectorAll('.day-card').forEach(x=>x.classList.remove('active'));document.querySelectorAll('.day-btn').forEach(x=>{x.classList.remove('active');x.setAttribute('aria-current','false')});const card=document.getElementById('day-'+id);if(card)card.classList.add('active');const btn=document.querySelector(`.day-btn[data-id="${id}"]`);if(btn){btn.classList.add('active');btn.setAttribute('aria-current','page')}if(location.hash!==`#${id}`)history.replaceState(null,'',`#${id}`);const d=trip.find(x=>x.id===id);if(d)initMap(d);updateSwitcher(id);if(scroll)window.scrollTo({top:document.querySelector('.layout').offsetTop-6,behavior:'smooth'})}
 function moveDay(delta){const idx=trip.findIndex(d=>d.id===activeId),next=trip[idx+delta];if(next)activateDay(next.id)}
 function resetChoices(){if(!confirm('저장된 선택과 완료 체크를 모두 초기화할까요?'))return;store.keys().filter(k=>k.startsWith('choice_')||k.startsWith('done_')).forEach(k=>store.remove(k));location.reload()}
-renderNav(activeId);renderContent();activateDay(activeId,false);prevDay.onclick=()=>moveDay(-1);nextDay.onclick=()=>moveDay(1);todayBtn.onclick=()=>activateDay(todayTripId());pdfBtn.onclick=()=>window.print();
+renderNav(activeId);setupToTop();renderContent();activateDay(activeId,false);prevDay.onclick=()=>moveDay(-1);nextDay.onclick=()=>moveDay(1);todayBtn.onclick=()=>activateDay(todayTripId());pdfBtn.onclick=()=>window.print();
 window.addEventListener('resize',()=>{if(maps[activeId])setTimeout(()=>maps[activeId].invalidateSize(),100)});
 window.addEventListener('hashchange',()=>{const h=hashTripId();if(h&&h!==activeId)activateDay(h)});
 </script>
